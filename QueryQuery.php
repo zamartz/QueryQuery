@@ -12,9 +12,13 @@ License: All Rights Reserved
 // Start Admin Page
 // ==================================
 	add_action('admin_menu', 'att_add_queryquery');
-	//Grabs elements from admin page\
+	//Admin scripts
 	if (is_admin()){
 	add_action('admin_enqueue_scripts', 'my_QueryQuery_admin_theme');
+	}
+	//Front end scrips
+	if (!is_admin()){
+	add_action('wp_enqueue_scripts', 'my_QueryQuery_admin_theme');
 	}
 	//Make our function to call the WordPress function to add to the correct menu.
 	function att_add_queryquery() {
