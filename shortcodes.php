@@ -151,7 +151,7 @@ ob_start();
 		$recentEvents = new WP_Query($args);
 
 		if ( $recentEvents->have_posts() ) {
-			?><div class="queryquery"><ul><?php
+			?><div class="queryquery-container"><ul><?php
 
 			while ( $recentEvents->have_posts() ) : $recentEvents->the_post();?>
 				<li class="queryquery-item">
@@ -161,11 +161,11 @@ ob_start();
 					else {
 						echo '<img src="' . get_bloginfo('stylesheet_directory') . '/images/thumbnail-default.jpg" class="queryquery-thumbnail />';
 					} }?>
-                <a href="<?php the_permalink(); ?>"><h3 class="featuretitle">
+                <a href="<?php the_permalink(); ?>"><h3 class="queryquery-title">
 				<?php the_title(); ?>
 				</h3></a><p class="queryquerydate">
 				<?php
-				echo the_time( get_option( 'date_format' ) ). $spacer."</p><p class='queryquerydetails'>". get_the_excerpt();?>
+				echo the_time( get_option( 'date_format' ) ). $spacer."</p><p class='queryquery-details'>". get_the_excerpt();?>
 				</p></li>
 				<?php
 			endwhile;
@@ -182,7 +182,7 @@ ob_start();
 				?></ul></div><!-- end .queryquery --><?php
 			}else{
 			// if no post tell them
-			echo '<div class="queryquery-more"><i>No Post(s) to Display</i></div><!--end .queryquery-more -->';
+			echo '<div class="queryquery-more">No Post(s) to Display</div><!--end .queryquery-more -->';
 			}
 
 		  wp_reset_postdata();
