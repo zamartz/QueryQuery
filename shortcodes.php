@@ -151,38 +151,38 @@ ob_start();
 		$recentEvents = new WP_Query($args);
 
 		if ( $recentEvents->have_posts() ) {
-			?><div class="newsandevents"><ul><?php
+			?><div class="queryquery"><ul><?php
 
 			while ( $recentEvents->have_posts() ) : $recentEvents->the_post();?>
-				<li class="newsandevents-item">
+				<li class="queryquery-item">
                 <?php if ($showthumbnails > 0 ){ if ( has_post_thumbnail() ) {
-						the_post_thumbnail();
+						the_post_thumbnail('thumbnail', array('class' => 'queryquery-tumbnail'));
 					}
 					else {
-						echo '<img src="' . get_bloginfo( 'stylesheet_directory' ) . '/images/thumbnail-default.jpg" />';
+						echo '<img src="' . get_bloginfo('stylesheet_directory') . '/images/thumbnail-default.jpg" class="queryquery-thumbnail />';
 					} }?>
                 <a href="<?php the_permalink(); ?>"><h3 class="featuretitle">
 				<?php the_title(); ?>
-				</h3></a><p class="featuredate">
+				</h3></a><p class="queryquerydate">
 				<?php
-				echo the_time( get_option( 'date_format' ) ). $spacer."</p><p class='featureddetails'>". get_the_excerpt();?>
+				echo the_time( get_option( 'date_format' ) ). $spacer."</p><p class='queryquerydetails'>". get_the_excerpt();?>
 				</p></li>
 				<?php
 			endwhile;
 
 			if ($clickthroughlink !=="null"){
-				echo'<div class="newsandevents-more"><a href="'.$clickthroughlink.'">';
+				echo'<div class="queryquery-more"><a href="'.$clickthroughlink.'">';
 				if ($clickthroughtext !=="null"){
 					echo $clickthroughtext;
 					}else{
 					echo '(Click to View More)';
 					}
-				echo'</a></div><!--end .newsandevents-more -->';
+				echo'</a></div><!--end .queryquery-more -->';
 				}
-				?></ul></div><!-- end .newsandevents --><?php
+				?></ul></div><!-- end .queryquery --><?php
 			}else{
 			// if no post tell them
-			echo '<div class="newsandevents-more"><i>No Post(s) to Display</i></div><!--end .newsandevents-more -->';
+			echo '<div class="queryquery-more"><i>No Post(s) to Display</i></div><!--end .queryquery-more -->';
 			}
 
 		  wp_reset_postdata();
