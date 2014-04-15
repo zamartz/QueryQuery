@@ -1,0 +1,10 @@
+/* CSS Document */
+
+#toplevel_page_menu-QueryQuery .wp-menu-image{
+	background-image:url(zamartz_2013_fade.png);
+	margin-right: 5px;
+}
+
+#toplevel_page_menu-QueryQuery:hover .wp-menu-image, #toplevel_page_menu-QueryQuery.current .wp-menu-image {
+	background-image:url(zamartz_2013.png);
+}
