@@ -1,10 +1,10 @@
 === Plugin Name ===
-Author: Zachary A. Martz (ZAMARTZ)
-Author URI: http://www.zamartz.com
+Contributors: Zachary A. Martz (ZAMARTZ)
 Donate link: http://bt.zamartz.com/RpKg9V
 Tags: wp_query,query,zamartz,shortcode
 Requires at least: 3.0.1
 Tested up to: 3.9
+Stable Tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -50,3 +50,7 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 = 1.0 =
 
 * Original Upload
+
+== Upgrade Notice ==
+
+Original Version
