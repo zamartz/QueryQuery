@@ -151,10 +151,18 @@ if ($debugmode > 0){ echo "<!-- QueryQueryDebug : Shortcode Set = ";}
 		  $poststags !=="null" ? $queryurl .= "&tag=".$poststags : "";
 		  $searchterm !=="null" ? $queryurl .= "&s=".$searchterm : "";
 		  };
-
+	
+	// List of Negotiated Default Options
 	if ($debugmode > 0){ echo "<!-- QueryQueryDebug : Post Query = ".json_encode($args)."-->";};
-
-		$recentEvents = new WP_Query($args);
+	// List of Shortcode entered Attributes
+	extract(shortcode_atts(array($args), $atts),'QueryQuery');
+	if ($debugmode > 0){ echo "<!-- QueryQueryDebug : List Shortcode Atts = ".json_encode($atts)."-->";};
+	// Final List of Merged Shortcode & Default Attributes
+	$finalAtts = array_merge($args,$atts);
+	if ($debugmode > 0){ echo "<!-- QueryQueryDebug : List Merged Atts = ".json_encode($finalAtts)."-->";};
+	
+	
+		$recentEvents = new WP_Query($finalAtts);
 
 		if ( $recentEvents->have_posts() ) {
 			?><div class="queryquery-container"><ul><?php
