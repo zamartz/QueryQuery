@@ -7,7 +7,7 @@ Version: 1.0.0
 Author: Zachary A. Martz
 Author URI: http://www.zamartz.com
 License: GPLv2 or later
-Donate Link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ANQ2QDYPDGDBY
+Donate Link: http://bt.zamartz.com/RpKg9V
 */
 // ==================================
 // Start Admin Page
