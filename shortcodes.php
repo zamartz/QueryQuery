@@ -126,7 +126,7 @@ if ($debugmode > 0){ echo "<!-- QueryQueryDebug : Shortcode Set = ";}
 		$categorynumbers !== "null" ? $args['cat'] = implode(",",$categorynumbers) : "";
 		$order !== "null" ? $args['order'] = $order : "";
 		$orderby !== "null" ? $args['orderby'] = $orderby : "";
-		$poststags !== "null" ?$args['poststags'] = $poststags : "";
+		$poststags !== "null" ?$args['tags'] = $poststags :  "";
 		$searchterm !== "null" ? $args['s'] = $searchterm : "";
 		
 		$monthsafter !== "null" || $monthsbefore !== "null" ?
@@ -154,11 +154,11 @@ if ($debugmode > 0){ echo "<!-- QueryQueryDebug : Shortcode Set = ";}
 	 //create query url to view all
 		  if ($disablequeryurl !=="1"){ 
 		  $queryurl = get_site_url()."?"."post_type=post&post_status=".$poststatus;
-		  $finalAtts['cat'] !=="null" ? $queryurl .= "&cat=".$finalAtts['cat']: "";
+		  $finalAtts['cat'] && $finalAtts['cat'] !=="null" ? $queryurl .= "&cat=".$finalAtts['cat']: "";
 		  $finalAtts['order'] !=="null" ? $queryurl .= "&order=".$finalAtts['order'] : "";
 		  $finalAtts['orderby'] !=="null" ? $queryurl .= "&orderby=".$finalAtts['orderby'] : "";
-		  $finalAtts['posttags'] !=="null" ? $queryurl .= "&tag=".$finalAtts['posttags'] : "";
-		  $finalAtts['searchterm'] !=="null" ? $queryurl .= "&s=".$finalAtts['searchterm']  : "";
+		  $finalAtts['tag'] && $finalAtts['tag'] !=="null" ? $queryurl .= "&tag=".$finalAtts['tag'] : "";
+		  $finalAtts['s'] && $finalAtts['s']  !=="null" ? $queryurl .= "&s=".$finalAtts['s']  : "";
 		  };
 	
 		$recentEvents = new WP_Query($finalAtts);
