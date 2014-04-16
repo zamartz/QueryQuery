@@ -141,16 +141,6 @@ if ($debugmode > 0){ echo "<!-- QueryQueryDebug : Shortcode Set = ";}
 					),
 				'inclusive' => true,
 		  ) : "";
-		  
-		  //create query url to view all
-		  if ($disablequeryurl !=="1"){ 
-		  $queryurl = get_site_url()."?"."post_type=post&post_status=".$poststatus;
-		  $categorynumbers !=="null" ? $queryurl .= "&cat=".implode(",",$categorynumbers) : "";
-		  $order !=="null" ? $queryurl .= "&order=".$order : "";
-		  $orderby !=="null" ? $queryurl .= "&orderby=".$orderby : "";
-		  $poststags !=="null" ? $queryurl .= "&tag=".$poststags : "";
-		  $searchterm !=="null" ? $queryurl .= "&s=".$searchterm : "";
-		  };
 	
 	// List of Negotiated Default Options
 	if ($debugmode > 0){ echo "<!-- QueryQueryDebug : Post Query = ".json_encode($args)."-->";};
@@ -161,6 +151,15 @@ if ($debugmode > 0){ echo "<!-- QueryQueryDebug : Shortcode Set = ";}
 	$finalAtts = array_merge($args,$atts);
 	if ($debugmode > 0){ echo "<!-- QueryQueryDebug : List Merged Atts = ".json_encode($finalAtts)."-->";};
 	
+	 //create query url to view all
+		  if ($disablequeryurl !=="1"){ 
+		  $queryurl = get_site_url()."?"."post_type=post&post_status=".$poststatus;
+		  $cat !=="null" ? $queryurl .= "&cat=".implode(",",$cat) : "";
+		  $order !=="null" ? $queryurl .= "&order=".$order : "";
+		  $orderby !=="null" ? $queryurl .= "&orderby=".$orderby : "";
+		  $poststags !=="null" ? $queryurl .= "&tag=".$poststags : "";
+		  $searchterm !=="null" ? $queryurl .= "&s=".$searchterm : "";
+		  };
 	
 		$recentEvents = new WP_Query($finalAtts);
 
