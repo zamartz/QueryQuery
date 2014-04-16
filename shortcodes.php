@@ -149,12 +149,12 @@ if ($debugmode > 0){ echo "<!-- QueryQueryDebug : Shortcode Set = ";}
 	if ($debugmode > 0){ echo "<!-- QueryQueryDebug : List Shortcode Atts = ".json_encode($atts)."-->";};
 	// Final List of Merged Shortcode & Default Attributes
 	$finalAtts = array_merge($args,$atts);
-	if ($debugmode > 0){ echo "<!-- QueryQueryDebug : List Merged Atts = ".json_encode($finalAtts)."-->";};
+	if ($debugmode > 0){ echo "<!-- QueryQueryDebug : List Merged Atts = ".json_encode($finalAtts).$finalAtts['cat']."-->";};
 	
 	 //create query url to view all
 		  if ($disablequeryurl !=="1"){ 
 		  $queryurl = get_site_url()."?"."post_type=post&post_status=".$poststatus;
-		  $cat !=="null" ? $queryurl .= "&cat=".implode(",",$cat) : "";
+		  $finalAtts['cat'] !=="null" ? $queryurl .= "&cat=".$finalAtts['cat']: "";
 		  $order !=="null" ? $queryurl .= "&order=".$order : "";
 		  $orderby !=="null" ? $queryurl .= "&orderby=".$orderby : "";
 		  $poststags !=="null" ? $queryurl .= "&tag=".$poststags : "";
