@@ -6,7 +6,8 @@ Description: Ability to make WP Queries within Posts and Pages through shortcode
 Version: 1.0.0
 Author: Zachary A. Martz
 Author URI: http://www.zamartz.com
-License: MIT License (MIT)
+License: GPLv2 or later
+Donate Link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ANQ2QDYPDGDBY
 */
 // ==================================
 // Start Admin Page
