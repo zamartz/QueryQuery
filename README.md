@@ -1,6 +1,3 @@
-QueryQuery
-==========
-
 ## Synopsis
 
 Wordpress wp_query plugin - Ability to make WP Queries within Posts and Pages through shortcode
@@ -21,7 +18,7 @@ To provide more post content within a specific time frame and with access to wp_
 
 The MIT License (MIT)
 
-Copyright (c) [2014] [Zachary A. Martz (ZAMARTZ)]
+Copyright (c) 2014 Zchary A. Martz (ZAMARTZ)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
