@@ -16,7 +16,7 @@ To provide more post content within a specific time frame and with access to wp_
 
 ## License
 
-The MIT License (MIT)
+MIT License (MIT)
 
 Copyright (c) 2014 Zchary A. Martz (ZAMARTZ)
 
