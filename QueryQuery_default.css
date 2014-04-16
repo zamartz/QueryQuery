@@ -1,12 +1,12 @@
 /* CSS Document - Query Query Front End Default*/
 
 .queryquery-container{}
-.queryquery-head-title{border-top: 5px black solid;padding: 5% 0px;}
-.queryquery-item {display: inline-block;width: 100%;margin-bottom: 5%;}
+.queryquery-head-title{border-top: 5px black solid;padding: 5% 0px !important;}
+.queryquery-item {display: inline-block;width: 100%; margin:0px 0px 5% 0px!important;}
 .queryquery-tumbnail{float: left;}
-.queryquery-title{margin: 0px;width: 60%;float: left;margin-left: 5%;clear:none;}
-.queryquery-date{width: auto;float: left;border: 1px dotted black;border-width: 0px 0px 1px 1px;clear: left;margin: 0px;padding: 0px 5%;}
-.queryquery-details{width: auto;float: none;padding: 5% 0px 5%;border: 1px dotted black;border-width: 0px 0px 1px 1px;margin: -1px 0px 0px 5%;padding-left:5%;clear: left;text-align: left;}
+.queryquery-title{margin: 0px 0px 0px 5% !important;width: 60%;float: left;clear:none;}
+.queryquery-date{width: auto;float: left;border: 1px dotted black;border-width: 0px 0px 1px 1px;clear: left;margin: 0px !important;padding: 0px 5% !important;}
+.queryquery-details{width: auto;float: none;padding: 5% 0px 5% !important;border: 1px dotted black;border-width: 0px 0px 1px 1px;margin: -1px 0px 0px 5% !important;padding-left:5% !important;clear: left;text-align: left;}
 .queryquery-more{}
 .queryquery-link{}
 
@@ -17,9 +17,7 @@
 @media screen and (max-width: 400px){
 	.queryquery-item {}
 	.queryquery-container {text-align: center;}
-	.queryquery-container ul{margin-left:0px;}
-	.queryquery-title{ width: auto;float: none;margin: 0px;padding-bottom: 5%;}
+	.queryquery-container ul{margin-left:0px !important;}
+	.queryquery-title{ width: auto;float: none;margin: 0px !important;padding-bottom: 5% !important;}
 	.wp-post-image {float: none;}
-	/*.queryquery-date {width: auto;float: left;border: 1px dotted black;border-width: 0px 0px 1px 1px;clear: left;margin: 0px;padding: 0px 5%;}
-	.queryquery-details {width: auto;float: none;padding: 5% 0px 5%;border: 1px dotted black;border-width: 0px 0px 1px 1px;margin: -1px 0px 0px 5%;padding-left:5%;clear: left;text-align: left;}*/
 }
