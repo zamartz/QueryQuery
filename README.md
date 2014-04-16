@@ -17,4 +17,5 @@ To provide more post content within a specific time frame and with access to wp_
 ## License
 
 License: GPLv2 or later
+
 License URI: [http://www.gnu.org/licenses/gpl-2.0.html](http://www.gnu.org/licenses/gpl-2.0.html)
