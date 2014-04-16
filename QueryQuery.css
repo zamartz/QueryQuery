@@ -1,51 +1,24 @@
 /* CSS Document */
 
-#toplevel_page_menu-QueryQuery .wp-menu-image{
-	background-image:url(zamartz_2013_fade.png);
-	margin-right: 5px;
-}
+#toplevel_page_menu-QueryQuery .wp-menu-image{background-image:url(zamartz_2013_fade.png);margin-right: 5px;}
+#toplevel_page_menu-QueryQuery:hover .wp-menu-image, #toplevel_page_menu-QueryQuery.current .wp-menu-image {background-image:url(zamartz_2013.png);}
+.queryquery-container{}
+.queryquery-item {display: inline-block;width: 100%;}
+.queryquery-tumbnail{float: left;}
+.queryquery-title{margin: 0px;width: 60%;float: left;margin-left: 5%;clear:none;}
+.queryquery-date{width: 20%;float: left;border: 1px dotted black;border-width: 0px 1px 1px 0px;margin-top: 5%;clear: left;}
+.queryquery-details{width: 70%;float: left;padding: 0px 0px 5% 5%;border: 1px dotted black;border-width: 0px 0px 1px 1px;margin-top: 5%;margin-left: -1px;}
+.queryquery-more{}
+.queryquery-link{}
 
-#toplevel_page_menu-QueryQuery:hover .wp-menu-image, #toplevel_page_menu-QueryQuery.current .wp-menu-image {
-	background-image:url(zamartz_2013.png);
-}
 
-.queryquery-container{
-	
+@media screen and (max-width: 750px){
+.queryquery-title{width: 50%;}
 }
-.queryquery-item {
-	display: inline-block;
-	width: 100%;
-}
-.queryquery-tumbnail{
-	float: left;
-}
-.queryquery-title{
-	margin: 0px;
-	width: 60%;
-	float: left;
-	margin-left: 5%;
-	clear:none;
-}
-.queryquery-date{
-	width: 20%;
-	float: left;
-	border: 1px dotted black;
-	border-width: 0px 1px 1px 0px;
-	margin-top: 5%;
-	clear: left;
-}
-.queryquery-details{
-	width: 70%;
-	float: left;
-	padding: 0px 0px 5% 5%;
-	border: 1px dotted black;
-	border-width: 0px 0px 1px 1px;
-	margin-top: 5%;
-	margin-left: -1px;
-}
-.queryquery-more{
-	
-}
-.queryquery-link{
-
+@media screen and (max-width: 400px){
+	.queryquery-container {text-align: center;}
+	.queryquery-container ul{margin-left:0px;}
+	.queryquery-title{width: auto;float: none;margin-left: 0px;}
+	.wp-post-image {float: none;}.queryquery-date {width: auto;float: none;border: 1px dotted black;border-width: 1px;margin-top: 5%;clear: left;margin-bottom: 0px;}
+	.queryquery-details {width: auto;float: none;padding: 5% 0px 5%;border: 1px dotted black;border-width: 1px;margin-top: -1px;margin-left: 0px;}
 }

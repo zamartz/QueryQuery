@@ -171,8 +171,9 @@ if ($debugmode > 0){ echo "<!-- QueryQueryDebug : Shortcode Set = ";}
 				<?php the_title(); ?>
 				</a></h3><p class="queryquery-date">
 				<?php
-				echo the_time( get_option( 'date_format' ) ). $spacer."</p><p class='queryquery-details'>". get_the_excerpt();?>
-				</p></li>
+				echo the_time( get_option( 'date_format' ) ).'<span class="QueryQuery-spacer">'.$spacer.'</span>';
+				if (get_the_excerpt()){echo "</p><p class='queryquery-details'>". get_the_excerpt()."</p>";}?>
+				</li>
 				<?php
 			endwhile;
 
