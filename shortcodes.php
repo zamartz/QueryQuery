@@ -8,10 +8,11 @@
 function QueryQuery( $atts, $content = null ) {
 
 ob_start();
-
+//load debug value
+$debugmode = get_option("QueryQuery_debugmode");
 
 //Custome deflaut list and if none set as null
-	$option_list_names = array(QueryQuery_poststatus,QueryQuery_postsperpage,QueryQuery_postsoffset,QueryQuery_orderby,QueryQuery_order,QueryQuery_spacer,QueryQuery_clickthroughtext,QueryQuery_clickthroughlink,QueryQuery_monthsafter,QueryQuery_monthsbefore,QueryQuery_tag,QueryQuery_s,QueryQuery_categorynumbers,QueryQuery_debugmode,QueryQuery_showthumbnails,QueryQuery_disablequeryurl);
+	$option_list_names = array(QueryQuery_poststatus,QueryQuery_postsperpage,QueryQuery_postsoffset,QueryQuery_orderby,QueryQuery_order,QueryQuery_spacer,QueryQuery_displaytitle,QueryQuery_clickthroughtext,QueryQuery_clickthroughlink,QueryQuery_monthsafter,QueryQuery_monthsbefore,QueryQuery_tag,QueryQuery_s,QueryQuery_categorynumbers,QueryQuery_debugmode,QueryQuery_showthumbnails,QueryQuery_disablequeryurl);
 	
 //Checks Options for overrides and blanks and negotiates
 	foreach ($option_list_names as $option_list_name){
@@ -34,7 +35,7 @@ ob_start();
 	if ($debugmode > 0){ echo "<!-- QueryQueryDebug : List Name & Value Set = ".json_encode($attr_list_names)."-->";};
 	
 //EXTRACT SHORTCODES and If none repalce with saved option 
-if ($debugmode > 0){ echo "<!-- QueryQueryDebug : Shortcode Set = ";}
+if ($debugmode > 0){ echo "<!-- QueryQueryDebug : Shortcode Set = -->";}
 	foreach ($attr_list_names as $attr_list_name_x){
 		$currentname = $attr_list_name_x["name"];
 		$thisname = str_replace("QueryQuery_","",$currentname);
@@ -42,9 +43,10 @@ if ($debugmode > 0){ echo "<!-- QueryQueryDebug : Shortcode Set = ";}
 		if ($currentvalue !== ""){
 			$short_code_atts[$thisname] = $currentvalue;
 		}
-		if ($debugmode > 0){ echo "[ ".$currentname." / ".$thisname." = ".$currentvalue." ] <br>"; };
+		if ($debugmode > 0){ echo "<!-- [ ".$currentname." / ".$thisname." = ".$currentvalue." ] -->"; };
+	echo "<!-- END : Shortcode Set -->";	
 	}
-	if ($debugmode > 0){echo " -->";};
+	
 	
 	extract($short_code_atts);
 
@@ -164,7 +166,11 @@ if ($debugmode > 0){ echo "<!-- QueryQueryDebug : Shortcode Set = ";}
 		$recentEvents = new WP_Query($finalAtts);
 
 		if ( $recentEvents->have_posts() ) {
-			?><div class="queryquery-container"><ul><?php
+			
+			
+			?><div class="queryquery-container">
+            <?php if ($displaytitle !== "null"){echo '<h2 class="queryquery-head-title">'.$displaytitle.'</h2>';}?>
+            <ul><?php
 
 			while ( $recentEvents->have_posts() ) : $recentEvents->the_post();?>
 				<li class="queryquery-item">

@@ -40,7 +40,12 @@
 			"title" => "Spacer Character",
 			"default" => " - ",
 			),
-		
+		array(
+			"name" => "displaytitle",
+			"type" => "text",
+			"title" => "Display Title",
+			"default" => "More post you will like",
+			),
 		array(
 			"name" => "clickthroughtext",
 			"type" => "text",
@@ -80,7 +85,7 @@
 		 array(
 			"name" => "categorynumbers",
 			"type" => "multi-select",
-			"title" => "Show Post with Category",
+			"title" => "Show Post with Category <br> (Ctrl/cmd click to selet multiple)",
 			"default" => "null"
 			),
 		 array(
@@ -98,7 +103,7 @@
 		 array(
 			"name" => "disablequeryurl",
 			"type" => "check",
-			"title" => "Disable Auto Query Read More URL",
+			"title" => "Disable Auto Query &quot;Read More&quot; URL",
 			"default" => "0"
 			)		
 		);

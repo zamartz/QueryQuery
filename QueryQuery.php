@@ -18,7 +18,7 @@ License: MIT License (MIT)
 	}
 	//Front end scrips
 	if (!is_admin()){
-	add_action('wp_enqueue_scripts', 'my_QueryQuery_admin_theme');
+	add_action('wp_enqueue_scripts', 'my_QueryQuery_front_theme');
 	}
 	//Make our function to call the WordPress function to add to the correct menu.
 	function att_add_queryquery() {
@@ -26,6 +26,9 @@ License: MIT License (MIT)
 	}
 	function my_QueryQuery_admin_theme() {
 		wp_enqueue_style('my-QueryQuery-admin-theme', plugins_url('QueryQuery.css', __FILE__));
+	}
+	function my_QueryQuery_front_theme() {
+		wp_enqueue_style('my-QueryQuery-front-defaut', plugins_url('QueryQuery_default.css', __FILE__));
 	}
 	function add_queryquery_php(){
 		require_once dirname( __FILE__ ) . '/QueryQuery_admin.php';
