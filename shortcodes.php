@@ -12,7 +12,7 @@ ob_start();
 $debugmode = get_option("QueryQuery_debugmode");
 
 //Custome deflaut list and if none set as null
-	$option_list_names = array(QueryQuery_poststatus,QueryQuery_postsperpage,QueryQuery_postsoffset,QueryQuery_orderby,QueryQuery_order,QueryQuery_spacer,QueryQuery_displaytitle,QueryQuery_clickthroughtext,QueryQuery_clickthroughlink,QueryQuery_monthsafter,QueryQuery_monthsbefore,QueryQuery_tag,QueryQuery_s,QueryQuery_categorynumbers,QueryQuery_debugmode,QueryQuery_showthumbnails,QueryQuery_disablequeryurl);
+	$option_list_names = array(QueryQuery_poststatus,QueryQuery_postsperpage,QueryQuery_postsoffset,QueryQuery_orderby,QueryQuery_order,QueryQuery_spacer,QueryQuery_displaytitle,QueryQuery_clickthroughtext,QueryQuery_clickthroughlink,QueryQuery_monthsafter,QueryQuery_monthsbefore,QueryQuery_tag,QueryQuery_s,QueryQuery_categorynumbers,QueryQuery_debugmode,QueryQuery_showthumbnails,QueryQuery_disablequeryurl,QueryQuery_disabledate,QueryQuery_disableexcerpt);
 	
 //Checks Options for overrides and blanks and negotiates
 	foreach ($option_list_names as $option_list_name){
@@ -182,10 +182,10 @@ if ($debugmode > 0){ echo "<!-- QueryQueryDebug : Shortcode Set = -->";}
 					} }?>
                 <h3 class="queryquery-title"><a class="queryquery-link" href="<?php the_permalink(); ?>">
 				<?php the_title(); ?>
-				</a></h3><p class="queryquery-date">
+				</a></h3> <?php if($disabledate> 0){ ?> <p class="queryquery-date">
 				<?php
-				echo the_time( get_option( 'date_format' ) ).'<span class="QueryQuery-spacer">'.$spacer.'</span>';
-				if (get_the_excerpt()){echo "</p><p class='queryquery-details'>". get_the_excerpt()."</p>";}?>
+				echo the_time(get_option( 'date_format' )).'<span class="QueryQuery-spacer">'.$spacer.'</span></p>'; } ?>
+				if (get_the_excerpt() && $disableexcerpt > 0 ){echo "<p class='queryquery-details'>". get_the_excerpt()."</p>";}?>
 				</li>
 				<?php
 			endwhile;

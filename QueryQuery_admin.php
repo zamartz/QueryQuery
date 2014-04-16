@@ -105,7 +105,19 @@
 			"type" => "check",
 			"title" => "Disable Auto Query &quot;Read More&quot; URL",
 			"default" => "0"
-			)		
+			),
+		array(
+			"name" => "disabledate",
+			"type" => "check",
+			"title" => "Disable Show Date",
+			"default" => "0"
+			),
+		array(
+			"name" => "disableexcerpt",
+			"type" => "check",
+			"title" => "Disable Show Excerpt",
+			"default" => "0"
+			)				
 		);
 		
 ?>
