@@ -117,6 +117,12 @@
 			"type" => "check",
 			"title" => "Disable Show Excerpt",
 			"default" => "0"
+			),
+		array(
+			"name" => "disablespacer",
+			"type" => "check",
+			"title" => "Disable Show Spacer",
+			"default" => "0"
 			)				
 		);
 		
