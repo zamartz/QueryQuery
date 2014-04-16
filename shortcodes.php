@@ -172,7 +172,7 @@ if ($debugmode > 0){ echo "<!-- QueryQueryDebug : Shortcode Set = ";}
 						the_post_thumbnail('thumbnail', array('class' => 'queryquery-tumbnail'));
 					}
 					else {
-						echo '<img src="' . get_bloginfo('stylesheet_directory') . '/images/thumbnail-default.jpg" class="queryquery-thumbnail />';
+						echo '<img src="' . plugins_url( '/thumbnail-default.jpg' , __FILE__ ) .'" class="queryquery-thumbnail />';
 					} }?>
                 <h3 class="queryquery-title"><a class="queryquery-link" href="<?php the_permalink(); ?>">
 				<?php the_title(); ?>
