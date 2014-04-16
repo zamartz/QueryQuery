@@ -11,7 +11,7 @@ ob_start();
 
 
 //Custome deflaut list and if none set as null
-	$option_list_names = array(QueryQuery_poststatus,QueryQuery_postsperpage,QueryQuery_postsoffset,QueryQuery_orderby,QueryQuery_order,QueryQuery_spacer,QueryQuery_clickthroughtext,QueryQuery_clickthroughlink,QueryQuery_monthsafter,QueryQuery_monthsbefore,QueryQuery_poststags,QueryQuery_searchterm,QueryQuery_categorynumbers,QueryQuery_debugmode,QueryQuery_showthumbnails,QueryQuery_disablequeryurl);
+	$option_list_names = array(QueryQuery_poststatus,QueryQuery_postsperpage,QueryQuery_postsoffset,QueryQuery_orderby,QueryQuery_order,QueryQuery_spacer,QueryQuery_clickthroughtext,QueryQuery_clickthroughlink,QueryQuery_monthsafter,QueryQuery_monthsbefore,QueryQuery_tag,QueryQuery_s,QueryQuery_categorynumbers,QueryQuery_debugmode,QueryQuery_showthumbnails,QueryQuery_disablequeryurl);
 	
 //Checks Options for overrides and blanks and negotiates
 	foreach ($option_list_names as $option_list_name){
@@ -126,8 +126,8 @@ if ($debugmode > 0){ echo "<!-- QueryQueryDebug : Shortcode Set = ";}
 		$categorynumbers !== "null" ? $args['cat'] = implode(",",$categorynumbers) : "";
 		$order !== "null" ? $args['order'] = $order : "";
 		$orderby !== "null" ? $args['orderby'] = $orderby : "";
-		$poststags !== "null" ?$args['tags'] = $poststags :  "";
-		$searchterm !== "null" ? $args['s'] = $searchterm : "";
+		$tag !== "null" ?$args['tag'] = $tag:  "";
+		$s !== "null" ? $args['s'] = $s : "";
 		
 		$monthsafter !== "null" || $monthsbefore !== "null" ?
 		$args['date_query'] = array(
@@ -149,7 +149,7 @@ if ($debugmode > 0){ echo "<!-- QueryQueryDebug : Shortcode Set = ";}
 	if ($debugmode > 0){ echo "<!-- QueryQueryDebug : List Shortcode Atts = ".json_encode($atts)."-->";};
 	// Final List of Merged Shortcode & Default Attributes
 	$finalAtts = array_merge($args,$atts);
-	if ($debugmode > 0){ echo "<!-- QueryQueryDebug : List Merged Atts = ".json_encode($finalAtts).$finalAtts['cat']."-->";};
+	if ($debugmode > 0){ echo "<!-- QueryQueryDebug : List Merged Atts = ".json_encode($finalAtts)."-->";};
 	
 	 //create query url to view all
 		  if ($disablequeryurl !=="1"){ 

@@ -66,13 +66,13 @@
 			"default" => "null",
 			),
 		array(
-			"name" => "poststags",
+			"name" => "tag",
 			"type" => "text",
 			"title" => "Show Post with Tag-slug(s)",
 			"default" => "null"
 			),
 		array(
-			"name" => "searchterm",
+			"name" => "s",
 			"type" => "text",
 			"title" => "Show Post with Search term(s)",
 			"default" => "null"
