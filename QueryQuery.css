@@ -12,18 +12,40 @@
 .queryquery-container{
 	
 }
+.queryquery-item {
+	display: inline-block;
+	width: 100%;
+}
 .queryquery-tumbnail{
-	
+	float: left;
 }
 .queryquery-title{
-	
+	margin: 0px;
+	width: 60%;
+	float: left;
+	margin-left: 5%;
+	clear:none;
 }
-.queryquerydate{
-	
+.queryquery-date{
+	width: 20%;
+	float: left;
+	border: 1px dotted black;
+	border-width: 0px 1px 1px 0px;
+	margin-top: 5%;
+	clear: left;
 }
 .queryquery-details{
-	
+	width: 70%;
+	float: left;
+	padding: 0px 0px 5% 5%;
+	border: 1px dotted black;
+	border-width: 0px 0px 1px 1px;
+	margin-top: 5%;
+	margin-left: -1px;
 }
 .queryquery-more{
 	
+}
+.queryquery-link{
+
 }

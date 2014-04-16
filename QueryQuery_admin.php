@@ -38,7 +38,7 @@
 			"name" => "spacer",
 			"type" => "text",
 			"title" => "Spacer Character",
-			"default" => "-",
+			"default" => " - ",
 			),
 		
 		array(
@@ -94,7 +94,13 @@
 			"type" => "check",
 			"title" => "Show Thumbnails with Post",
 			"default" => "0"
-			)	
+			),
+		 array(
+			"name" => "disablequeryurl",
+			"type" => "check",
+			"title" => "Disable Query URL",
+			"default" => "0"
+			)		
 		);
 		
 ?>
@@ -183,9 +189,9 @@ foreach ($option_list_names as $option_list_name){
         <td class="import-system row-title"><label><?php _e( $option_list_name["title"] ); ?></label></td>
         <td class="desc">
 		<?
-        get_option($value) > 0 ? $checked = 'checked="checked"':"" ; // get our options array from the db
+        get_option($value) > 0 ? $checked = 'checked="checked"': $checked = " " ; // get our options array from the db
         ?>
-        <input type="checkbox" name="<?php echo $value.'[]' ?>" id="<?php echo $value ?>" value="1" <?php echo $checked ?>/>
+        <input type="checkbox" name="<?php echo $value ?>" id="<?php echo $value ?>" value="1>" <?php echo $checked ?>/>
         </td>
         <td><?php echo $option_list_name["default"] ?> <input type="hidden" name="<?php echo $value.'_default' ?>" value="<?php echo $option_list_name["default"] ?>" />  </td>
     </tr>

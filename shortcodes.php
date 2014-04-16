@@ -11,48 +11,44 @@ ob_start();
 
 
 //Custome deflaut list and if none set as null
-	$option_list_names = array(QueryQuery_poststatus,QueryQuery_postsperpage,QueryQuery_postsoffset,QueryQuery_orderby,QueryQuery_order,QueryQuery_spacer,QueryQuery_clickthroughtext,QueryQuery_clickthroughlink,QueryQuery_monthsafter,QueryQuery_monthsbefore,QueryQuery_poststags,QueryQuery_searchterm,QueryQuery_categorynumbers,QueryQuery_debugmode,showthumbnails);
+	$option_list_names = array(QueryQuery_poststatus,QueryQuery_postsperpage,QueryQuery_postsoffset,QueryQuery_orderby,QueryQuery_order,QueryQuery_spacer,QueryQuery_clickthroughtext,QueryQuery_clickthroughlink,QueryQuery_monthsafter,QueryQuery_monthsbefore,QueryQuery_poststags,QueryQuery_searchterm,QueryQuery_categorynumbers,QueryQuery_debugmode,QueryQuery_showthumbnails,QueryQuery_disablequeryurl);
+	
+//Checks Options for overrides and blanks and negotiates
 	foreach ($option_list_names as $option_list_name){
-		$defaultname = $option_list_name."_default";
-		get_option($option_list_name) !== "" && get_option($option_list_name) !== "default" ? $option_list_names[$option_list_name]["value"] = get_option($option_list_name) : $option_list_names[$option_list_name]["value"] = get_option($defaultname);
-		get_option($option_list_name) == "default" ? $option_list_names[$option_list_name]["value"] = get_option($defaultname):"";
+		$defval = $option_list_name;
+		$defval .= "_default";
 		
+		if (get_option($option_list_name) !== "" && get_option($option_list_name) !== "default"){  
+		$attr_list_names[$option_list_name]["value"] = get_option($option_list_name);
+		$attr_list_names[$option_list_name]["name"] = $option_list_name;
+		}
+		if (get_option($option_list_name) == "default"){ 
+		$attr_list_names[$option_list_name]["value"] = get_option($defval);
+		$attr_list_names[$option_list_name]["name"] = $option_list_name;
+		}
+		if (!get_option($option_list_name)){
+		$attr_list_names[$option_list_name]["value"] = get_option($defval);
+		$attr_list_names[$option_list_name]["name"] = $option_list_name;
+		}
 	}
+	if ($debugmode > 0){ echo "<!-- QueryQueryDebug : List Name & Value Set = ".json_encode($attr_list_names)."-->";};
 	
 //EXTRACT SHORTCODES and If none repalce with saved option 
-    extract(shortcode_atts(array(
-		'poststatus' => get_option('QueryQuery_poststatus') !== "" ? get_option('QueryQuery_poststatus') : $option_list_names['QueryQuery_poststatus']["value"],
-		
-		'postsperpage'	=> get_option('QueryQuery_postsperpage') !== "" ? get_option('QueryQuery_postsperpage') : $option_list_names['QueryQuery_postsperpage']["value"],
-		
-		'postsoffset' => get_option('QueryQuery_postsoffset') !== "" ? get_option('QueryQuery_postsoffset') : $option_list_names['QueryQuery_postsoffset']["value"],
-		
-		'orderby'	=> get_option('QueryQuery_orderby') !== "" ? get_option('QueryQuery_orderby') : $option_list_names['QueryQuery_orderby']["value"],
-		
-		'order'	=> get_option('QueryQuery_order') !== "" ? get_option('QueryQuery_order') : $option_list_names['QueryQuery_order']["value"],
-		
-		'spacer'=> get_option('QueryQuery_spacer') !== "" ? get_option('QueryQuery_spacer') : $option_list_names['QueryQuery_spacer']["value"],
-		
-		'clickthroughtext' => get_option('QueryQuery_clickthroughtext') !== "" ? get_option('QueryQuery_clickthroughtext') : $option_list_names['QueryQuery_clickthroughtext']["value"],
-
-		'clickthroughlink' => get_option('QueryQuery_clickthroughlink') !== "" ? get_option('QueryQuery_clickthroughlink') : $option_list_names['QueryQuery_clickthroughlink']["value"],
-		
-		'monthsafter' => get_option('QueryQuery_monthsafter') !== "" ? get_option('QueryQuery_monthsafter') : $option_list_names['QueryQuery_monthsafter']["value"],
-
-		'monthsbefore' => get_option('QueryQuery_monthsbefore') !== "" ? get_option('QueryQuery_monthsbefore') : $option_list_names['QueryQuery_monthsbefore']["value"],
-		
-		'poststags' => get_option('QueryQuery_poststags') !== "" ? get_option('QueryQuery_poststags') : $option_list_names['QueryQuery_poststags']["value"],
-		
-		'searchterm' => get_option('QueryQuery_searchterm') !== "" ? get_option('QueryQuery_searchterm') : $option_list_names['QueryQuery_searchterm']["value"],
-		
-	    'categorynumbers'=> get_option('QueryQuery_categorynumbers') !== "" ? get_option('QueryQuery_categorynumbers') : $option_list_names['QueryQuery_categorynumbers']["value"],
-		'debugmode'=> get_option('QueryQuery_debugmode') !== "" ? get_option('QueryQuery_debugmode') : $option_list_names['QueryQuery_debugmode']["value"],
-		'showthumbnails'=> get_option('QueryQuery_showthumbnails') !== "" ? get_option('QueryQuery_showthumbnails') : $option_list_names['QueryQuery_showthumbnails']["value"]
-   		 ),
-	 $atts));
+if ($debugmode > 0){ echo "<!-- QueryQueryDebug : Shortcode Set = ";}
+	foreach ($attr_list_names as $attr_list_name_x){
+		$currentname = $attr_list_name_x["name"];
+		$thisname = str_replace("QueryQuery_","",$currentname);
+		$currentvalue = $attr_list_name_x["value"];
+		if ($currentvalue !== ""){
+			$short_code_atts[$thisname] = $currentvalue;
+		}
+		if ($debugmode > 0){ echo "[ ".$currentname." / ".$thisname." = ".$currentvalue." ] <br>"; };
+	}
+	if ($debugmode > 0){echo " -->";};
 	
-	
-	if ($debugmode > 0){ echo "<!-- List Options Set = ".json_encode($option_list_names)."-->";};
+	extract($short_code_atts);
+
+	if ($debugmode > 0){ echo "<!-- QueryQueryDebug : List Options Set = ".json_encode($option_list_names)."-->";};
 	
 	$today = getdate();
 	$themonth = $today["mon"];
@@ -145,8 +141,18 @@ ob_start();
 					),
 				'inclusive' => true,
 		  ) : "";
+		  
+		  //create query url to view all
+		  if ($disablequeryurl !=="1"){ 
+		  $queryurl = get_site_url()."?"."post_type=post&post_status=".$poststatus;
+		  $categorynumbers !=="null" ? $queryurl .= "&cat=".implode(",",$categorynumbers) : "";
+		  $order !=="null" ? $queryurl .= "&order=".$order : "";
+		  $orderby !=="null" ? $queryurl .= "&orderby=".$orderby : "";
+		  $poststags !=="null" ? $queryurl .= "&tag=".$poststags : "";
+		  $searchterm !=="null" ? $queryurl .= "&s=".$searchterm : "";
+		  };
 
-	if ($debugmode > 0){ echo "<!-- Post Query = ".json_encode($args)."-->";};
+	if ($debugmode > 0){ echo "<!-- QueryQueryDebug : Post Query = ".json_encode($args)."-->";};
 
 		$recentEvents = new WP_Query($args);
 
@@ -161,9 +167,9 @@ ob_start();
 					else {
 						echo '<img src="' . get_bloginfo('stylesheet_directory') . '/images/thumbnail-default.jpg" class="queryquery-thumbnail />';
 					} }?>
-                <a href="<?php the_permalink(); ?>"><h3 class="queryquery-title">
+                <h3 class="queryquery-title"><a class="queryquery-link" href="<?php the_permalink(); ?>">
 				<?php the_title(); ?>
-				</h3></a><p class="queryquerydate">
+				</a></h3><p class="queryquery-date">
 				<?php
 				echo the_time( get_option( 'date_format' ) ). $spacer."</p><p class='queryquery-details'>". get_the_excerpt();?>
 				</p></li>
@@ -171,6 +177,7 @@ ob_start();
 			endwhile;
 
 			if ($clickthroughlink !=="null"){
+				$disablequeryurl !== "1" ? $clickthroughlink = $queryurl :"";
 				echo'<div class="queryquery-more"><a href="'.$clickthroughlink.'">';
 				if ($clickthroughtext !=="null"){
 					echo $clickthroughtext;
