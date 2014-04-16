@@ -155,10 +155,10 @@ if ($debugmode > 0){ echo "<!-- QueryQueryDebug : Shortcode Set = ";}
 		  if ($disablequeryurl !=="1"){ 
 		  $queryurl = get_site_url()."?"."post_type=post&post_status=".$poststatus;
 		  $finalAtts['cat'] !=="null" ? $queryurl .= "&cat=".$finalAtts['cat']: "";
-		  $order !=="null" ? $queryurl .= "&order=".$order : "";
-		  $orderby !=="null" ? $queryurl .= "&orderby=".$orderby : "";
-		  $poststags !=="null" ? $queryurl .= "&tag=".$poststags : "";
-		  $searchterm !=="null" ? $queryurl .= "&s=".$searchterm : "";
+		  $finalAtts['order'] !=="null" ? $queryurl .= "&order=".$finalAtts['order'] : "";
+		  $finalAtts['orderby'] !=="null" ? $queryurl .= "&orderby=".$finalAtts['orderby'] : "";
+		  $finalAtts['posttags'] !=="null" ? $queryurl .= "&tag=".$finalAtts['posttags'] : "";
+		  $finalAtts['searchterm'] !=="null" ? $queryurl .= "&s=".$finalAtts['searchterm']  : "";
 		  };
 	
 		$recentEvents = new WP_Query($finalAtts);
