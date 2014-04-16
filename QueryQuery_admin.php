@@ -98,7 +98,7 @@
 		 array(
 			"name" => "disablequeryurl",
 			"type" => "check",
-			"title" => "Disable Query URL",
+			"title" => "Disable Auto Query Read More URL",
 			"default" => "0"
 			)		
 		);
