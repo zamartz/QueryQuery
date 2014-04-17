@@ -21,11 +21,15 @@ if ($tabaction =="default"){
 <table class="widefat importers" cellspacing="0">
 <form method="post" action="options.php">  
             <?php wp_nonce_field('update-options') ?> 
-<tr><th><?php _e( 'Option Name' ); ?></th>
+<thead>
+<tr>
+<th><?php _e( 'Variable Name' ); ?></th>
+<th><?php _e( 'Option Description' ); ?></th>
 <th><?php _e( 'Custom Default' ); ?></th>
 <th><?php _e( 'Preset Default' ); ?></th>
 </tr> 
-
+</thead>
+<tbody>
 <?php 
 foreach ($option_list_names as $option_list_name){
 	$evenodd ++;
@@ -34,7 +38,8 @@ foreach ($option_list_names as $option_list_name){
 	$value= "QueryQuery_".$option_list_name["name"];
 	?>
 	<tr class="<?php if ($evenodd % 2 == 0) {echo "even";}else{echo "alternate odd";} ?>">
-        <td class="import-system row-title"><label><?php _e( $option_list_name["title"] ); ?></label></td>
+    	<td class="queryvariable">&quot;<?php echo $option_list_name["name"] ?>&quot;</td>
+        <td class="import-system row-title"><label><?php _e( $option_list_name["title"] );?></label></td>
         <td class="desc"><input type="text" name="<?php echo $value ?>" value="<?php  echo get_option($value); ?>"/></td>
         <td><?php echo $option_list_name["default"] ?> <input type="hidden" name="<?php echo $value.'_default'?>" value="<?php echo $option_list_name["default"] ?>" />  </td>
 	</tr>
@@ -45,6 +50,7 @@ foreach ($option_list_names as $option_list_name){
 	$value= "QueryQuery_".$option_list_name["name"];
     	?>
 	<tr class="<?php if ($evenodd % 2 == 0) {echo "even";}else{echo "alternate odd";}?>">
+    	<td class="queryvariable">&quot;<?php echo $option_list_name["name"] ?>&quot;</td>
         <td class="import-system row-title"><label><?php _e( $option_list_name["title"] ); ?></label></td>
         <td class="desc">
     		<select name="<?php echo $value ?>" id="<?php echo $value ?>"><?php
@@ -64,6 +70,7 @@ foreach ($option_list_names as $option_list_name){
 	$value= "QueryQuery_".$option_list_name["name"];
     	?>
 	<tr class="<?php if ($evenodd % 2 == 0) {echo "even";}else{echo "alternate odd";} ?>">
+    	<td class="queryvariable">&quot;<?php echo $option_list_name["name"] ?>&quot;</td>
         <td class="import-system row-title"><label><?php _e( $option_list_name["title"] ); ?></label></td>
         <td class="desc">
     		<select multiple="multiple" name="<?php echo $value.'[]' ?>" id="<?php echo $value ?>"><?php
@@ -84,6 +91,7 @@ foreach ($option_list_names as $option_list_name){
 	$value= "QueryQuery_".$option_list_name["name"];
 	?>
 	<tr class="<?php if ($evenodd % 2 == 0) {echo "even";}else{echo "alternate odd";}?>">
+    	<td class="queryvariable">&quot;<?php echo $option_list_name["name"] ?>&quot;</td>
         <td class="import-system row-title"><label><?php _e( $option_list_name["title"] ); ?></label></td>
         <td class="desc">
 		<?
@@ -96,8 +104,8 @@ foreach ($option_list_names as $option_list_name){
     <?php
 	}
 }
-?>
-<tr><td></td><td></td><td><input type="submit" name="Submit" value="Store Options" class="button button-primary"/></p>  
+?></tbody><tfoot>
+<tr><td></td><td></td><td></td><td><input type="submit" name="Submit" value="Store Options" class="button button-primary"/></p>  
             <input type="hidden" name="action" value="update" />  
             <input type="hidden" name="page_options" value="<?php
 			foreach ($option_list_names as $option_list_name){
@@ -106,6 +114,7 @@ foreach ($option_list_names as $option_list_name){
 			}
 			 ?>" /></td></tr>
 </form>
+</tfoot>
 </table>
 </div>
 <?php } //end default content ?>
@@ -116,12 +125,15 @@ foreach ($option_list_names as $option_list_name){
 <div id="menu-tab-examples" <?php if($tabaction =="examples"){ echo 'style="display:inherit;" class"menu-tab-content-examples active"';}else { echo 'style="display:none;"; class"menu-tab-content"';} ?>>
 <h3><?php _e( 'Query Query Examples'); ?></h3>
 <table class="widefat examples" cellspacing="0">
+<thead>
 <tr>
 <th><?php _e( 'Name' ); ?></th>
 <th><?php _e( 'Type' ); ?></th>
 <th><?php _e( 'Example' ); ?></th>
 <th><?php _e( 'Descrption' ); ?></th>
 </tr> 
+</thead>
+<tbody>
 <?php foreach ($example_list_names as $example_list_name){ $evenodd2 ++; ?>
 <tr class="<?php if ($evenodd2 % 2 == 0) {echo "even";}else{echo "alternate odd";} ?>">
 <td><?php echo $example_list_name["title"]; ?></td>
@@ -130,9 +142,10 @@ foreach ($option_list_names as $option_list_name){
 <td><?php echo $example_list_name["desc"]; ?></td>
 </tr>
 <tr class="<?php if ($evenodd2 % 2 == 0) {echo "even";}else{echo "alternate odd";} ?>">
-<td colspan="4"><?php echo '<img class="queryquery-admin-image" scr="'.$example_list_name["image_url"].'" alt="'.$example_list_name["title"].'"/>'; ?></td>
+<td colspan="4"><?php echo '<img class="queryquery-admin-image" scr="'.plugins_url( '/assets/'.$example_list_name["image_name"] , __FILE__ ).'" alt="'.$example_list_name["title"].'"/>'; ?></td>
 </tr>
 <?php }//end example_lust)names?>
+</tbody>
 </table>
 </div><!-- end of tab-options -->
 </div><!-- end of wrap -->
