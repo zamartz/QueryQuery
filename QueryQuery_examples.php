@@ -15,6 +15,13 @@ $example_list_names = array(
 			"example_text" =>"&#091;QueryQuery disablethumbnails=&quot;1&quot;&#093; ",
 			"image_name" => "standard-no-image.png",
 			"desc" =>"This is the standard view with the featured images disabled. This will disable both applied and fallback thumbnail imaged"
+			),
+			array(
+			"title" => "Disable Date",
+			"type" => "default",
+			"example_text" =>"&#091;QueryQuery disablethumbnails=&quot;1&quot; disabledate=&quot;1&quot;&#093; ",
+			"image_name" => "standard-no-image-date.png",
+			"desc" =>"This is the standard view with no image and no date shown."
 			)
 		);
 ?>
