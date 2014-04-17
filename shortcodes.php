@@ -154,13 +154,14 @@ if ($debugmode > 0){ echo "<!-- QueryQueryDebug : Shortcode Set = -->";}
 	if ($debugmode > 0){ echo "<!-- QueryQueryDebug : List Merged Atts = ".json_encode($finalAtts)."-->";};
 	
 	 //create query url to view all
-		  if ($disablequeryurl !=="1"){ 
+		  if ($disablequeryurl <= 0 ){ 
 		  $queryurl = get_site_url()."?"."post_type=post&post_status=".$poststatus;
 		  $finalAtts['cat'] && $finalAtts['cat'] !=="null" ? $queryurl .= "&cat=".$finalAtts['cat']: "";
 		  $finalAtts['order'] !=="null" ? $queryurl .= "&order=".$finalAtts['order'] : "";
 		  $finalAtts['orderby'] !=="null" ? $queryurl .= "&orderby=".$finalAtts['orderby'] : "";
 		  $finalAtts['tag'] && $finalAtts['tag'] !=="null" ? $queryurl .= "&tag=".$finalAtts['tag'] : "";
 		  $finalAtts['s'] && $finalAtts['s']  !=="null" ? $queryurl .= "&s=".$finalAtts['s']  : "";
+		  $clickthroughlink = $queryurl; 
 		  };
 	
 		$recentEvents = new WP_Query($finalAtts);
@@ -174,27 +175,31 @@ if ($debugmode > 0){ echo "<!-- QueryQueryDebug : Shortcode Set = -->";}
 
 			while ( $recentEvents->have_posts() ) : $recentEvents->the_post();?>
 				<li class="queryquery-item">
-                <?php if ($showthumbnails > 0 ){ if ( has_post_thumbnail() ) {
+            <?php if ($showthumbnails > 0 ){ 
+						if ( has_post_thumbnail() ) {
 						the_post_thumbnail('thumbnail', array('class' => 'queryquery-tumbnail'));
-					}
-					else {
+						} else {
 						echo '<img src="' . plugins_url( '/thumbnail-default.jpg' , __FILE__ ) .'" class="queryquery-thumbnail />';
-					} }?>
+						} 
+					}
+					?>
                 <h3 class="queryquery-title"><a class="queryquery-link" href="<?php the_permalink(); ?>">
 				<?php the_title(); ?>
 				</a></h3> 
-				<?php if($disabledate> 0){ 
-					?> <p class="queryquery-date"><?php
-					echo the_time(get_option( 'date_format' ));
-					if($disablespacer> 0){ echo '<span class="QueryQuery-spacer">'.$spacer.'</span></p>'; }
-				} 
-				if (get_the_excerpt() && $disableexcerpt > 0 ){echo "<p class='queryquery-details'>". get_the_excerpt()."</p>";}?>
+				<?php if($disabledate <= 0){ ?> 
+                	  	<p class="queryquery-date"> <?php echo the_time(get_option( 'date_format' ));
+						if($disablespacer <= 0){ echo '<span class="QueryQuery-spacer">'.$spacer.'</span>'; }
+						echo '</p>';
+						} 
+						if ( get_the_excerpt() && $disableexcerpt <= 0 ){
+							echo "<p class='queryquery-details'>". get_the_excerpt()."</p>";
+						}?>
 				</li>
 				<?php
 			endwhile;
 
 			if ($clickthroughlink !=="null"){
-				$disablequeryurl !== "1" ? $clickthroughlink = $queryurl :"";
+				
 				echo'<div class="queryquery-more"><a href="'.$clickthroughlink.'">';
 				if ($clickthroughtext !=="null"){
 					echo $clickthroughtext;

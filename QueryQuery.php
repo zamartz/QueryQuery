@@ -17,6 +17,8 @@ Donate Link: http://bt.zamartz.com/RpKg9V
 	if (is_admin()){
 	add_action('admin_enqueue_scripts', 'my_QueryQuery_admin_theme');
 	}
+	//Uninstall script
+	register_uninstall_hook('uninstall.php',"");
 	//Front end scrips
 	if (!is_admin()){
 	add_action('wp_enqueue_scripts', 'my_QueryQuery_front_theme');
