@@ -176,6 +176,8 @@ foreach ($option_list_names as $option_list_name){
 
 	$recentEvents = new WP_Query($finalAtts);
 	$showonlyonpost > 0 && !is_single() ? $showqueryhere = 1 : $showqueryhere = 0 ; 
+	// if none query attribute override extract them here to overrite data
+	extract($finalAtts);
 	
 	if ( $recentEvents->have_posts() && $showqueryhere  <= 0 ) { ?>
     <div class="queryquery-container">
