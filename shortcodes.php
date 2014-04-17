@@ -130,7 +130,7 @@ foreach ($option_list_names as $option_list_name){
 		'post_status' => $poststatus,
 		
 		);
-		
+		$categorynumbers = array_merge($categorynumbers,$anticategorynumbers);
 		$categorynumbers !== "null" ? $args['cat'] = implode(",",$categorynumbers) : "";
 		$order !== "null" ? $args['order'] = $order : "";
 		$orderby !== "null" ? $args['orderby'] = $orderby : "";

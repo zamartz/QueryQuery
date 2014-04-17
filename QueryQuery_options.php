@@ -86,7 +86,13 @@ $option_list_names = array(
 		 array(
 			"name" => "categorynumbers",
 			"type" => "multi-select",
-			"title" => "Show Post with Category <br> (Ctrl/cmd click to selet multiple)",
+			"title" => "Show Posts with Category <br> (Ctrl/cmd click to selet multiple)",
+			"default" => "null"
+			),
+		array(
+			"name" => "anticategorynumbers",
+			"type" => "multi-select",
+			"title" => "Exclude Post with Category <br> (Ctrl/cmd click to selet multiple)",
 			"default" => "null"
 			),
 		 array(

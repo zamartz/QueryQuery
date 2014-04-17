@@ -67,6 +67,7 @@ foreach ($option_list_names as $option_list_name){
 	}
 	//SELECT MULTI-OPTIONS
 	if($option_list_name["type"]=="multi-select"){ 
+	$options_orderby="";
 	$value= "QueryQuery_".$option_list_name["name"];
     	?>
 	<tr class="<?php if ($evenodd % 2 == 0) {echo "even";}else{echo "alternate odd";} ?>">
@@ -74,11 +75,12 @@ foreach ($option_list_names as $option_list_name){
         <td class="import-system row-title"><label><?php _e( $option_list_name["title"] ); ?></label></td>
         <td class="desc">
     		<select multiple="multiple" name="<?php echo $value.'[]' ?>" id="<?php echo $value ?>"><?php
-                $option_list_name["name"] == "categorynumbers" ? $options_orderby = get_all_category_ids() : $options_orderby =  $option_list_name["options"] ;
+                $option_list_name["name"] == "categorynumbers" || $option_list_name["name"] == "anticategorynumbers" ? $options_orderby = get_all_category_ids() : $options_orderby =  $option_list_name["options"] ;
 				$select_orderby = get_option($value);
                 foreach ($options_orderby as $option_orderby) {
                     $selected = in_array($option_orderby,$select_orderby) !== false ? 'selected="selected"' :" ";
-                    echo '<option value="' . $option_orderby . '" id="'. $option_orderby .'"'. $selected.'>'. get_cat_name($option_orderby). '</option>';
+					$option_list_name["name"] == "anticategorynumbers" ? $option_orderby_value = "-".$option_orderby: $option_orderby_value = $option_orderby ;
+                    echo '<option value="' . $option_orderby_value . '" id="'. $option_orderby .'"'. $selected.'>'. get_cat_name($option_orderby). '</option>';
              }?></select>
              
    		</td>
