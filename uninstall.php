@@ -13,6 +13,7 @@ foreach ($option_list_names as $option_list_name){
 	$defautl = "QueryQuery_".$option_list_name["name"]."_default";
 	array_push($queryquery_UI_list,$standard,$defautl);
 }
+array_push($queryquery_UI_list,"QueryQuery_initialize");
 
 foreach ($queryquery_UI_list as $UItem){
 	

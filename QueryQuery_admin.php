@@ -1,14 +1,6 @@
 <?php 
 	// get QueryQuery Admin Options
 	include_once('QueryQuery_options.php');
-	
-	//sets defaults on install	
-	if (get_option("QueryQuery_initialize")){}else{ 
-		add_option( "QueryQuery_initialize",1,"","yes");
-		foreach ($option_list_names as $option_list_name){
-			add_option( "QueryQuery_".$option_list_name["name"]."_default",$option_list_name["default"],"","yes");
-		}
-	}
 ?>
 <div class="wrap">
  <h2 class="nav-tab-wrapper">

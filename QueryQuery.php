@@ -16,9 +16,19 @@ Donate Link: http://bt.zamartz.com/RpKg9V
 	//Admin scripts
 	if (is_admin()){
 	add_action('admin_enqueue_scripts', 'my_QueryQuery_admin_theme');
-	}
 	//Uninstall script
 	register_uninstall_hook('uninstall.php',"");
+	//sets defaults on install	
+		if (!get_option("QueryQuery_initialize")){ 
+			// get QueryQuery Admin Options
+			include_once('QueryQuery_options.php');
+			add_option( "QueryQuery_initialize",1,"","yes");
+			foreach ($option_list_names as $option_list_name){
+				$optionname = "QueryQuery_".$option_list_name["name"]."_default";
+				add_option($optionname,$option_list_name["default"],"","yes");
+			}
+		}
+	}
 	//Front end scrips
 	if (!is_admin()){
 	add_action('wp_enqueue_scripts', 'my_QueryQuery_front_theme');

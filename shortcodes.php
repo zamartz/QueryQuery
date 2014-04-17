@@ -11,8 +11,16 @@ ob_start();
 //load debug value
 $debugmode = get_option("QueryQuery_debugmode");
 
+// get QueryQuery Admin Options
+include_once('QueryQuery_options.php');
+$opt_names = array();
+foreach ($option_list_names as $option_list_name){
+	$standard = "QueryQuery_".$option_list_name["name"];
+	array_push($opt_names,$standard); 
+}
+
 //Custome deflaut list and if none set as null
-	$option_list_names = array(QueryQuery_poststatus,QueryQuery_postsperpage,QueryQuery_postsoffset,QueryQuery_orderby,QueryQuery_order,QueryQuery_spacer,QueryQuery_displaytitle,QueryQuery_clickthroughtext,QueryQuery_clickthroughlink,QueryQuery_monthsafter,QueryQuery_monthsbefore,QueryQuery_tag,QueryQuery_s,QueryQuery_categorynumbers,QueryQuery_debugmode,QueryQuery_showthumbnails,QueryQuery_disablequeryurl,QueryQuery_disabledate,QueryQuery_disableexcerpt,QueryQuery_disablespacer);
+	$option_list_names = $opt_names;
 	
 //Checks Options for overrides and blanks and negotiates
 	foreach ($option_list_names as $option_list_name){
