@@ -6,8 +6,8 @@
  <h2 class="nav-tab-wrapper">
  <a href="<?php if(isset($_GET["page"])){ echo admin_url("admin.php")."?page=".$_GET["page"]."/#"; };?>" class="nav-tab <?php if($_GET["action"]== ""){ echo "nav-tab-active";}; ?> ">
  <?php _e( 'Defaults' ); ?>
- </a><a href="<?php  if(isset($_GET["page"])){ echo admin_url("admin.php")."?page=".$_GET["page"]."&action=options";}; ?>" class="nav-tab <?php if($_GET["action"]=="options"){ echo "nav-tab-active";}; ?>">
- <?php _e( 'Options' ); ?>
+ </a><a href="<?php  if(isset($_GET["page"])){ echo admin_url("admin.php")."?page=".$_GET["page"]."&action=examples";}; ?>" class="nav-tab <?php if($_GET["action"]=="examples"){ echo "nav-tab-active";}; ?>">
+ <?php _e( 'Examples' ); ?>
  </a>
  </h2>
 
@@ -110,9 +110,30 @@ foreach ($option_list_names as $option_list_name){
 </div>
 <?php } //end default content ?>
 
-<div id="menu-tab-options" <?php if($tabaction =="options"){ echo 'style="display:inherit;" class"menu-tab-content-options active"';}else { echo 'style="display:none;"; class"menu-tab-content"';} ?>>
-<h3><?php _e( 'Query Query Options'); ?></h3>
- 
+<?php //EXAMPLE START
+ include_once('QueryQuery_examples.php');
+?>
+<div id="menu-tab-examples" <?php if($tabaction =="examples"){ echo 'style="display:inherit;" class"menu-tab-content-examples active"';}else { echo 'style="display:none;"; class"menu-tab-content"';} ?>>
+<h3><?php _e( 'Query Query Examples'); ?></h3>
+<table class="widefat examples" cellspacing="0">
+<tr>
+<th><?php _e( 'Name' ); ?></th>
+<th><?php _e( 'Type' ); ?></th>
+<th><?php _e( 'Example' ); ?></th>
+<th><?php _e( 'Descrption' ); ?></th>
+</tr> 
+<?php foreach ($example_list_names as $example_list_name){ $evenodd2 ++; ?>
+<tr class="<?php if ($evenodd2 % 2 == 0) {echo "even";}else{echo "alternate odd";} ?>">
+<td><?php echo $example_list_name["title"]; ?></td>
+<td><?php echo $example_list_name["type"]; ?></td>
+<td><?php echo $example_list_name["example_text"]; ?></td>
+<td><?php echo $example_list_name["desc"]; ?></td>
+</tr>
+<tr class="<?php if ($evenodd2 % 2 == 0) {echo "even";}else{echo "alternate odd";} ?>">
+<td colspan="4"><?php echo '<img class="queryquery-admin-image" scr="'.$example_list_name["image_url"].'" alt="'.$example_list_name["title"].'"/>'; ?></td>
+</tr>
+<?php }//end example_lust)names?>
+</table>
 </div><!-- end of tab-options -->
 </div><!-- end of wrap -->
 

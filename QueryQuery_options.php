@@ -90,15 +90,15 @@ $option_list_names = array(
 			"default" => "null"
 			),
 		 array(
-			"name" => "debugmode",
-			"type" => "check",
-			"title" => "Run Front-End Debug Mode",
-			"default" => "0"
-			),
-		 array(
 			"name" => "showthumbnails",
 			"type" => "check",
 			"title" => "Show Thumbnails with Post",
+			"default" => "0"
+			),
+		array(
+			"name" => "disabledefautlthumb",
+			"type" => "check",
+			"title" => "Disable Post Thumbnail Default Fallback Image",
 			"default" => "0"
 			),
 		 array(
@@ -123,6 +123,12 @@ $option_list_names = array(
 			"name" => "disablespacer",
 			"type" => "check",
 			"title" => "Disable Spacer",
+			"default" => "0"
+			),
+		array(
+			"name" => "debugmode",
+			"type" => "check",
+			"title" => "Run Front-End Debug Mode",
 			"default" => "0"
 			)				
 		);

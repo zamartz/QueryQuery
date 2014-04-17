@@ -186,8 +186,8 @@ if ($debugmode > 0){ echo "<!-- QueryQueryDebug : Shortcode Set = -->";}
             <?php if ($showthumbnails > 0 ){ 
 						if ( has_post_thumbnail() ) {
 						the_post_thumbnail('thumbnail', array('class' => 'queryquery-tumbnail'));
-						} else {
-						echo '<img src="' . plugins_url( '/thumbnail-default.jpg' , __FILE__ ) .'" class="queryquery-thumbnail />';
+						} elseif ($disabledefautlthumb <= 0 ){
+						echo '<img class="queryquery-tumbnail" src="' . plugins_url( '/thumbnail-default.png' , __FILE__ ) .'" class="queryquery-thumbnail />';
 						} 
 					}
 					?>
