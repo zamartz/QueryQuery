@@ -90,7 +90,7 @@ $option_list_names = array(
 			"default" => "null"
 			),
 		 array(
-			"name" => "showthumbnails",
+			"name" => "disablethumbnails",
 			"type" => "check",
 			"title" => "Show Thumbnails with Post",
 			"default" => "0"

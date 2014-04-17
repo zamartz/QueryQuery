@@ -183,11 +183,11 @@ if ($debugmode > 0){ echo "<!-- QueryQueryDebug : Shortcode Set = -->";}
 
 			while ( $recentEvents->have_posts() ) : $recentEvents->the_post();?>
 				<li class="queryquery-item">
-            <?php if ($showthumbnails > 0 ){ 
+            <?php if ($disablethumbnails <= 0 ){ 
 						if ( has_post_thumbnail() ) {
 						the_post_thumbnail('thumbnail', array('class' => 'queryquery-tumbnail'));
 						} elseif ($disabledefautlthumb <= 0 ){
-						echo '<img class="queryquery-tumbnail" src="' . plugins_url( '/thumbnail-default.png' , __FILE__ ) .'" class="queryquery-thumbnail />';
+						echo '<img class="queryquery-tumbnail" src="' . plugins_url( '/thumbnail-default.png' , __FILE__ ) .'"/>';
 						} 
 					}
 					?>
