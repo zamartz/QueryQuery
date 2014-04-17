@@ -7,8 +7,7 @@
 
 function QueryQuery( $atts, $content = null ) {
 
-ob_start();
-//load debug value
+// load debug value
 $debugmode = get_option("QueryQuery_debugmode");
 
 // get QueryQuery Admin Options
@@ -43,18 +42,17 @@ foreach ($option_list_names as $option_list_name){
 	if ($debugmode > 0){ echo "<!-- QueryQueryDebug : List Name & Value Set = ".json_encode($attr_list_names)."-->";};
 	
 //EXTRACT SHORTCODES and If none repalce with saved option 
-if ($debugmode > 0){ echo "<!-- QueryQueryDebug : Shortcode Set = -->";}
-	foreach ($attr_list_names as $attr_list_name_x){
-		$currentname = $attr_list_name_x["name"];
-		$thisname = str_replace("QueryQuery_","",$currentname);
-		$currentvalue = $attr_list_name_x["value"];
-		if ($currentvalue !== ""){
-			$short_code_atts[$thisname] = $currentvalue;
-		}
-		if ($debugmode > 0){ echo "<!-- [ ".$currentname." / ".$thisname." = ".$currentvalue." ] -->"; };
-	echo "<!-- END : Shortcode Set -->";	
-	}
-	
+	if ($debugmode > 0){ echo "<!-- QueryQueryDebug : Shortcode Set = -->";}
+		foreach ($attr_list_names as $attr_list_name_x){
+			$currentname = $attr_list_name_x["name"];
+			$thisname = str_replace("QueryQuery_","",$currentname);
+			$currentvalue = $attr_list_name_x["value"];
+			if ($currentvalue !== ""){
+				$short_code_atts[$thisname] = $currentvalue;
+			}
+			if ($debugmode > 0){ echo "<!-- [ ".$currentname." / ".$thisname." = ".$currentvalue." ] -->"; };
+		echo "<!-- END : Shortcode Set -->";	
+	 }
 	
 	extract($short_code_atts);
 
@@ -64,7 +62,7 @@ if ($debugmode > 0){ echo "<!-- QueryQueryDebug : Shortcode Set = -->";}
 	$themonth = $today["mon"];
 	$theyear = $today["year"];	
 
-	//months forward
+//months forward
 	if ($monthsbefore != "null"){
 		$goforwardm = $monthsafter;
 		$goforwardy = $theyear;
@@ -92,7 +90,7 @@ if ($debugmode > 0){ echo "<!-- QueryQueryDebug : Shortcode Set = -->";}
 		
 	}else{$goforwardm =""; $goforwardy = $theyear;}//end months before
 	
-	//months after
+//months after
 	if ($monthsafter != "null"){
 		$gobackwardm = $monthsbefore;
 		$gobackwardy = $theyear;
@@ -152,82 +150,81 @@ if ($debugmode > 0){ echo "<!-- QueryQueryDebug : Shortcode Set = -->";}
 				'inclusive' => true,
 		  ) : "";
 	
-	// List of Negotiated Default Options
+// List of Negotiated Default Options
 	if ($debugmode > 0){ echo "<!-- QueryQueryDebug : Post Query = ".json_encode($args)."-->";};
-	// List of Shortcode entered Attributes
+
+// List of Shortcode entered Attributes
 	extract(shortcode_atts(array($args), $atts),'QueryQuery');
 	if ($debugmode > 0){ echo "<!-- QueryQueryDebug : List Shortcode Atts = ".json_encode($atts)."-->";};
-	// Final List of Merged Shortcode & Default Attributes
+
+// Final List of Merged Shortcode & Default Attributes
 	$finalAtts = array_merge($args,$atts);
 	if ($debugmode > 0){ echo "<!-- QueryQueryDebug : List Merged Atts = ".json_encode($finalAtts)."-->";};
 	
-	 //create query url to view all
-		  if ($disablequeryurl <= 0 ){ 
-		  $queryurl = get_site_url()."?"."post_type=post&post_status=".$poststatus;
-		  $finalAtts['cat'] && $finalAtts['cat'] !=="null" ? $queryurl .= "&cat=".$finalAtts['cat']: "";
-		  $finalAtts['order'] !=="null" ? $queryurl .= "&order=".$finalAtts['order'] : "";
-		  $finalAtts['orderby'] !=="null" ? $queryurl .= "&orderby=".$finalAtts['orderby'] : "";
-		  $finalAtts['tag'] && $finalAtts['tag'] !=="null" ? $queryurl .= "&tag=".$finalAtts['tag'] : "";
-		  $finalAtts['s'] && $finalAtts['s']  !=="null" ? $queryurl .= "&s=".$finalAtts['s']  : "";
-		  $clickthroughlink = $queryurl; 
-		  };
+//create query url to view all
+	if ($disablequeryurl <= 0 ){ 
+	  $queryurl = get_site_url()."?"."post_type=post&post_status=".$poststatus;
+	  $finalAtts['cat'] && $finalAtts['cat'] !=="null" ? $queryurl .= "&cat=".$finalAtts['cat']: "";
+	  $finalAtts['order'] !=="null" ? $queryurl .= "&order=".$finalAtts['order'] : "";
+	  $finalAtts['orderby'] !=="null" ? $queryurl .= "&orderby=".$finalAtts['orderby'] : "";
+	  $finalAtts['tag'] && $finalAtts['tag'] !=="null" ? $queryurl .= "&tag=".$finalAtts['tag'] : "";
+	  $finalAtts['s'] && $finalAtts['s']  !=="null" ? $queryurl .= "&s=".$finalAtts['s']  : "";
+	  $clickthroughlink = $queryurl; 
+	};
+
+//Start to do the Query and Show Content
+
+	$recentEvents = new WP_Query($finalAtts);
+	$showonlyonpost > 0 && !is_single() ? $showqueryhere = 1 : $showqueryhere = 0 ; 
 	
-		$recentEvents = new WP_Query($finalAtts);
+	if ( $recentEvents->have_posts() && $showqueryhere  <= 0 ) { ?>
+    <div class="queryquery-container">
+		<?php if ($displaytitle !== "null"){echo '<h2 class="queryquery-head-title">'.$displaytitle.'</h2>';}?>
+		<ul><?php
 
-		if ( $recentEvents->have_posts() ) {
-			
-			
-			?><div class="queryquery-container">
-            <?php if ($displaytitle !== "null"){echo '<h2 class="queryquery-head-title">'.$displaytitle.'</h2>';}?>
-            <ul><?php
-
-			while ( $recentEvents->have_posts() ) : $recentEvents->the_post();?>
-				<li class="queryquery-item">
-            <?php if ($disablethumbnails <= 0 ){ 
-						if ( has_post_thumbnail() ) {
-						the_post_thumbnail('thumbnail', array('class' => 'queryquery-tumbnail'));
-						} elseif ($disabledefautlthumb <= 0 ){
-						echo '<img class="queryquery-tumbnail" src="' . plugins_url( '/thumbnail-default.png' , __FILE__ ) .'"/>';
-						} 
-					}
-					?>
-                <h3 class="queryquery-title"><a class="queryquery-link" href="<?php the_permalink(); ?>">
-				<?php the_title(); ?>
-				</a></h3> 
-				<?php if($disabledate <= 0){ ?> 
-                	  	<p class="queryquery-date"> <?php echo the_time(get_option( 'date_format' ));
-						if($disablespacer <= 0){ echo '<span class="QueryQuery-spacer">'.$spacer.'</span>'; }
-						echo '</p>';
-						} 
-						if ( get_the_excerpt() && $disableexcerpt <= 0 ){
-							echo "<p class='queryquery-details'>". get_the_excerpt()."</p>";
-						}?>
-				</li>
-				<?php
-			endwhile;
-
-			if ($clickthroughlink !=="null"){
-				
-				echo'<div class="queryquery-more"><a href="'.$clickthroughlink.'">';
-				if ($clickthroughtext !=="null"){
-					echo $clickthroughtext;
-					}else{
-					echo '(Click to View More)';
-					}
-				echo'</a></div><!--end .queryquery-more -->';
+		while ( $recentEvents->have_posts() ) : $recentEvents->the_post();?>
+			<li class="queryquery-item">
+		<?php if ($disablethumbnails <= 0 ){ 
+					if ( has_post_thumbnail() ) {
+					the_post_thumbnail('thumbnail', array('class' => 'queryquery-tumbnail'));
+					} elseif ($disabledefautlthumb <= 0 ){
+					echo '<img class="queryquery-tumbnail" src="' . plugins_url( '/thumbnail-default.png' , __FILE__ ) .'"/>';
+					} 
 				}
-				?></ul></div><!-- end .queryquery --><?php
-			}else{
-			// if no post tell them
-			echo '<div class="queryquery-more">No Post(s) to Display</div><!--end .queryquery-more -->';
-			}
+				?>
+			<h3 class="queryquery-title"><a class="queryquery-link" href="<?php the_permalink(); ?>">
+			<?php the_title(); ?>
+			</a></h3> 
+			<?php if($disabledate <= 0){ ?> 
+					<p class="queryquery-date"> <?php echo the_time(get_option( 'date_format' ));
+					if($disablespacer <= 0){ echo '<span class="QueryQuery-spacer">'.$spacer.'</span>'; }
+					echo '</p>';
+					} 
+					if ( get_the_excerpt() && $disableexcerpt <= 0 ){
+						echo "<p class='queryquery-details'>". get_the_excerpt()."</p>";
+					}?>
+			</li>
+			<?php
+		endwhile;
 
-		  wp_reset_postdata();
-		 $out = ob_get_clean();
-   return $out;
-
-}
-
+		if ($clickthroughlink !=="null"){
+			echo'<div class="queryquery-more"><a href="'.$clickthroughlink.'">';
+			if ($clickthroughtext !=="null"){
+				echo $clickthroughtext;
+				}else{
+				echo '(Click to View More)';
+				}
+			echo'</a></div><!--end .queryquery-more -->';
+		}
+		?></ul></div><!-- end .queryquery --><?php
+	}else{
+		// if no post tell them
+		echo '<div class="queryquery-more">No Post(s) to Display</div><!--end .queryquery-more -->';
+	}
+	  wp_reset_postdata();
+	  
+	  
+}// end query query shortcode
 add_shortcode('QueryQuery', 'QueryQuery');
 
 ?>

@@ -90,9 +90,15 @@ $option_list_names = array(
 			"default" => "null"
 			),
 		 array(
+			"name" => "showonlyonpost",
+			"type" => "check",
+			"title" => "Show only within Sigle-Post <br> (not in query lists or pages)",
+			"default" => "0"
+			),
+		 array(
 			"name" => "disablethumbnails",
 			"type" => "check",
-			"title" => "Show Thumbnails with Post",
+			"title" => "Disable All Thumbnails with Post",
 			"default" => "0"
 			),
 		array(
