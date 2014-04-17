@@ -4,7 +4,7 @@
 ?>
 <div class="wrap">
  <h2 class="nav-tab-wrapper">
- <a href="<?php if(isset($_GET["page"])){ echo admin_url("admin.php")."?page=".$_GET["page"]."/#"; };?>" class="nav-tab <?php if($_GET["action"]== ""){ echo "nav-tab-active";}; ?> ">
+ <a href="<?php if(isset($_GET["page"])){ echo admin_url("admin.php")."?page=".$_GET["page"]."#"; };?>" class="nav-tab <?php if($_GET["action"]== ""){ echo "nav-tab-active";}; ?> ">
  <?php _e( 'Defaults' ); ?>
  </a><a href="<?php  if(isset($_GET["page"])){ echo admin_url("admin.php")."?page=".$_GET["page"]."&action=examples";}; ?>" class="nav-tab <?php if($_GET["action"]=="examples"){ echo "nav-tab-active";}; ?>">
  <?php _e( 'Examples' ); ?>
@@ -139,10 +139,10 @@ foreach ($option_list_names as $option_list_name){
 <td><?php echo $example_list_name["title"]; ?></td>
 <td><?php echo $example_list_name["type"]; ?></td>
 <td><?php echo $example_list_name["example_text"]; ?></td>
-<td><?php echo $example_list_name["desc"]; ?></td>
+<td rowspan="2"><?php echo $example_list_name["desc"]; ?></td>
 </tr>
 <tr class="<?php if ($evenodd2 % 2 == 0) {echo "even";}else{echo "alternate odd";} ?>">
-<td colspan="4"><?php echo '<img class="queryquery-admin-image" scr="'.plugins_url( '/assets/'.$example_list_name["image_name"] , __FILE__ ).'" alt="'.$example_list_name["title"].'"/>'; ?></td>
+<td colspan="3"><?php echo '<img class="queryquery-admin-image" src="'.plugins_url( '/assets/'.$example_list_name["image_name"] , __FILE__ ).'" alt="'.$example_list_name["title"].'"/>'; ?></td>
 </tr>
 <?php }//end example_lust)names?>
 </tbody>
