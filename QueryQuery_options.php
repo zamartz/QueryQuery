@@ -6,8 +6,8 @@ $option_list_names = array(
 			"name" => "poststatus",
 			"type" => "select",
 			"title" => "Post by Status",
-			"default" => "publisehd",
-			"options" =>"published,pending,draft,auto-draft,future,private,inherit,trash,any"
+			"default" => "publish",
+			"options" =>"publish,pending,draft,auto-draft,future,private,inherit,trash,any"
 			),
 		array(
 			"name" => "postsperpage",
@@ -102,7 +102,7 @@ $option_list_names = array(
 			"default" => "null"
 			),
 		 array(
-			"name" => "showonlyonpost",
+			"name" => "disableshowonlyonpost",
 			"type" => "check",
 			"title" => "Show only within Sigle-Post <br> (not in query lists or pages)",
 			"default" => "0"

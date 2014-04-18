@@ -4,7 +4,7 @@
 	Query Query ShortCode		       	     	 
 
 -------------------------------------------------------------------------------------------------------*/
-
+ob_start();
 function QueryQuery( $atts, $content = null ) {
 
 // load debug value
@@ -250,6 +250,7 @@ foreach ($option_list_names as $option_list_name){
 	  
 	  
 }// end query query shortcode
+ob_end_clean();
 add_shortcode('QueryQuery', 'QueryQuery');
 
 ?>
