@@ -78,8 +78,8 @@ foreach ($option_list_names as $option_list_name){
                 $option_list_name["name"] == "categorynumbers" || $option_list_name["name"] == "anticategorynumbers" ? $options_orderby = get_all_category_ids() : $options_orderby =  $option_list_name["options"] ;
 				$select_orderby = get_option($value);
                 foreach ($options_orderby as $option_orderby) {
-                    $selected = in_array($option_orderby,$select_orderby) !== false ? 'selected="selected"' :" ";
 					$option_list_name["name"] == "anticategorynumbers" ? $option_orderby_value = "-".$option_orderby: $option_orderby_value = $option_orderby ;
+					$selected = in_array($option_orderby_value,$select_orderby) !== false ? 'selected="selected"' :" ";
                     echo '<option value="' . $option_orderby_value . '" id="'. $option_orderby .'"'. $selected.'>'. get_cat_name($option_orderby). '</option>';
              }?></select>
              
