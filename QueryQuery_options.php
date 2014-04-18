@@ -48,6 +48,12 @@ $option_list_names = array(
 			"default" => "More post you will like",
 			),
 		array(
+			"name" => "noposttext",
+			"type" => "text",
+			"title" => "No Post Text",
+			"default" => "No Post(s) to Display",
+			),
+		array(
 			"name" => "clickthroughtext",
 			"type" => "text",
 			"title" => "Clickthrough Text",
@@ -101,6 +107,12 @@ $option_list_names = array(
 			"title" => "Show only within Sigle-Post <br> (not in query lists or pages)",
 			"default" => "0"
 			),
+		array(
+			"name" => "disabledisplaytitle",
+			"type" => "check",
+			"title" => "Disable Display Title",
+			"default" => "0"
+			),
 		 array(
 			"name" => "disablethumbnails",
 			"type" => "check",
@@ -135,6 +147,12 @@ $option_list_names = array(
 			"name" => "disablespacer",
 			"type" => "check",
 			"title" => "Disable Spacer",
+			"default" => "0"
+			),
+		array(
+			"name" => "disablenoposttext",
+			"type" => "check",
+			"title" => "Disable No Post Text",
 			"default" => "0"
 			),
 		array(

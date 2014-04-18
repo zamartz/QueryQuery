@@ -120,7 +120,8 @@ foreach ($option_list_names as $option_list_name){
 		}
 	}else{$gobackwardm = ""; $gobackwardy = $theyear;}//end months after
 	if ($debugmode > 0){ echo ("<!--(".$monthsbefore."/m Backward) After= YEAR:".$gobackwardy." MONTH:".$gobackwardm."~ (".$monthsafter."/m Forward) Before=YEAR:". $goforwardy." MONTH:".$goforwardm."-->");};
-
+		
+		//Default Arguments to pass
 		$args = array(
 
 		'post_type' => 'post',
@@ -130,8 +131,30 @@ foreach ($option_list_names as $option_list_name){
 		'post_status' => $poststatus,
 		
 		);
-		$categorynumbers = array_merge($categorynumbers,$anticategorynumbers);
-		$categorynumbers !== "null" ? $args['cat'] = implode(",",$categorynumbers) : "";
+		
+		//Negotiat Categories
+		
+		
+		
+		
+		//$categorynumbers = array_merge($categorynumbers,$anticategorynumbers);
+		count($anticategorynumbers) > 0 && is_array($anticategorynumbers) ? $anticategorynumbers = implode(",",$anticategorynumbers) : "";
+		count($categorynumbers) > 0 && is_array($categorynumbers) ? $categorynumbers = implode(",",$categorynumbers) : "";
+		// remove if null and if both combind with seperator
+		$anticategorynumbers == "null" ? $anticategorynumbers = "" : "";
+		$categorynumbers == "null" ? $categorynumbers = "":"";
+		$anticategorynumbers !==  "null" && $anticategorynumbers !== "" ? $catjoiner ="," : "";
+		//create final list
+		$finalcatlist = $anticategorynumbers.$catjoiner.$categorynumbers;
+		//send final list to arguments
+		$finalcatlist !== "" ? $args['cat'] = $finalcatlist : "";
+		
+		// debug category negotiation 
+		if ($debugmode > 0){ echo "<!-- QueryQueryDebug : Normal Cat Numbers = ".$categorynumbers."-->";};
+		if ($debugmode > 0){ echo "<!-- QueryQueryDebug :Anti Cat Numbers = ".$anticategorynumbers."-->";};
+		if ($debugmode > 0){ echo "<!-- QueryQueryDebug : Final Cat Numbers = ".json_encode($finalcatlist)."-->";};
+		
+		
 		$order !== "null" ? $args['order'] = $order : "";
 		$orderby !== "null" ? $args['orderby'] = $orderby : "";
 		$tag !== "null" ?$args['tag'] = $tag:  "";
@@ -158,7 +181,7 @@ foreach ($option_list_names as $option_list_name){
 	if ($debugmode > 0){ echo "<!-- QueryQueryDebug : List Shortcode Atts = ".json_encode($atts)."-->";};
 
 // Final List of Merged Shortcode & Default Attributes
-	$finalAtts = array_merge($args,$atts);
+	$atts ? $finalAtts = array_merge($args,$atts) : $finalAtts = $args ;
 	if ($debugmode > 0){ echo "<!-- QueryQueryDebug : List Merged Atts = ".json_encode($finalAtts)."-->";};
 	
 //create query url to view all
@@ -181,7 +204,7 @@ foreach ($option_list_names as $option_list_name){
 	
 	if ( $recentEvents->have_posts() && $showqueryhere  <= 0 ) { ?>
     <div class="queryquery-container">
-		<?php if ($displaytitle !== "null"){echo '<h2 class="queryquery-head-title">'.$displaytitle.'</h2>';}?>
+		<?php if ($disabledisplaytitle <= 0 ){echo '<h2 class="queryquery-head-title">'.$displaytitle.'</h2>';}?>
 		<ul><?php
 
 		while ( $recentEvents->have_posts() ) : $recentEvents->the_post();?>
@@ -221,7 +244,7 @@ foreach ($option_list_names as $option_list_name){
 		?></ul></div><!-- end .queryquery --><?php
 	}else{
 		// if no post tell them
-		echo '<div class="queryquery-more">No Post(s) to Display</div><!--end .queryquery-more -->';
+		if ($disablenoposttext <= 0 ){ echo '<div class="queryquery-more">'.$noposttext.'</div><!--end .queryquery-more -->' ;}
 	}
 	  wp_reset_postdata();
 	  
