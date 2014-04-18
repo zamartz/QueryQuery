@@ -79,7 +79,7 @@ foreach ($option_list_names as $option_list_name){
 				$select_orderby = get_option($value);
                 foreach ($options_orderby as $option_orderby) {
 					$option_list_name["name"] == "anticategorynumbers" ? $option_orderby_value = "-".$option_orderby: $option_orderby_value = $option_orderby ;
-					$selected = in_array($option_orderby_value,$select_orderby) !== false ? 'selected="selected"' :" ";
+					$selected = in_array($option_orderby_value,$select_orderby) !== false && $select_orderby !== "" ? 'selected="selected"' :" ";
                     echo '<option value="' . $option_orderby_value . '" id="'. $option_orderby .'"'. $selected.'>'. get_cat_name($option_orderby). '</option>';
              }?></select>
              
