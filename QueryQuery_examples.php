@@ -22,6 +22,14 @@ $example_list_names = array(
 			"example_text" =>"&#091;QueryQuery disablethumbnails=&quot;1&quot; disabledate=&quot;1&quot;&#093; ",
 			"image_name" => "standard-no-image-date.png",
 			"desc" =>"This is the standard view with no image and no date shown."
+			),
+			array(
+			"title" => "Disable Excerpts",
+			"type" => "default",
+			"example_text" =>"&#091;QueryQuery disablethumbnails=&quot;1&quot; disabledate=&quot;1&quot; disableexcerpt=&quot;1&quot; &#093; ",
+			"image_name" => "standard-no-image-date-exerpt.png",
+			"desc" =>"This is the standard view with no image, no date shown, and no excerpt."
 			)
 		);
 ?>
+

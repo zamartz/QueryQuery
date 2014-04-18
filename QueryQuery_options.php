@@ -16,7 +16,7 @@ $option_list_names = array(
 			"default" => "1"
 			),
 		array(
-			"name" => "postsoffset",
+			"name" => "offset",
 			"type" => "text",
 			"title" => "Offset by ? Number of Posts",
 			"default" => "null"
@@ -116,13 +116,13 @@ $option_list_names = array(
 		 array(
 			"name" => "disablethumbnails",
 			"type" => "check",
-			"title" => "Disable All Thumbnails with Post",
+			"title" => "Disable Thumbnails",
 			"default" => "0"
 			),
 		array(
 			"name" => "disabledefautlthumb",
 			"type" => "check",
-			"title" => "Disable Post Thumbnail Default Fallback Image",
+			"title" => "Disable Thumbnail Default Image",
 			"default" => "0"
 			),
 		 array(
