@@ -4,19 +4,20 @@
 	Query Query ShortCode		       	     	 
 
 -------------------------------------------------------------------------------------------------------*/
+
+function QueryQuery($atts) {
 ob_start();
-function QueryQuery( $atts, $content = null ) {
-
 // load debug value
-$debugmode = get_option("QueryQuery_debugmode");
-
+	$debugmode = get_option("QueryQuery_debugmode");
+	
 // get QueryQuery Admin Options
-include_once('QueryQuery_options.php');
-$opt_names = array();
-foreach ($option_list_names as $option_list_name){
-	$standard = "QueryQuery_".$option_list_name["name"];
-	array_push($opt_names,$standard); 
-}
+	include('QueryQuery_options.php');
+	$opt_names = array();
+	foreach ($option_list_names as $option_list_name){
+		$standard = "QueryQuery_".$option_list_name["name"];
+		array_push($opt_names,$standard); 
+	}
+
 
 //Custome deflaut list and if none set as null
 	$option_list_names = $opt_names;
@@ -50,10 +51,9 @@ foreach ($option_list_names as $option_list_name){
 			if ($currentvalue !== ""){
 				$short_code_atts[$thisname] = $currentvalue;
 			}
-			if ($debugmode > 0){ echo "<!-- [ ".$currentname." / ".$thisname." = ".$currentvalue." ] -->"; };
-		echo "<!-- END : Shortcode Set -->";	
+		if ($debugmode > 0){ echo "<!-- [ ".$currentname." / ".$thisname." = ".$currentvalue." ] -->"; };
 	 }
-	
+	if ($debugmode > 0){echo "<!-- END : Shortcode Set -->";};	
 	extract($short_code_atts);
 
 	if ($debugmode > 0){ echo "<!-- QueryQueryDebug : List Options Set = ".json_encode($option_list_names)."-->";};
@@ -247,10 +247,10 @@ foreach ($option_list_names as $option_list_name){
 		if ($disablenoposttext <= 0 ){ echo '<div class="queryquery-more">'.$noposttext.'</div><!--end .queryquery-more -->' ;}
 	}
 	  wp_reset_postdata();
-	  
-	  
+	  return ob_get_clean();
+	  ob_flush();
 }// end query query shortcode
-ob_end_clean();
+
 add_shortcode('QueryQuery', 'QueryQuery');
 
 ?>
