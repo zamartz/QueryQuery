@@ -192,7 +192,8 @@ ob_start();
 	  $finalAtts['orderby'] !=="null" ? $queryurl .= "&orderby=".$finalAtts['orderby'] : "";
 	  $finalAtts['tag'] && $finalAtts['tag'] !=="null" ? $queryurl .= "&tag=".$finalAtts['tag'] : "";
 	  $finalAtts['s'] && $finalAtts['s']  !=="null" ? $queryurl .= "&s=".$finalAtts['s']  : "";
-	  $clickthroughlink = $queryurl; 
+	  // if no custome clickthrough url use created one
+	  if ($clickthroughlink == "null" ){$clickthroughlink = $queryurl;}
 	};
 
 //Start to do the Query and Show Content
@@ -244,7 +245,8 @@ ob_start();
 		?></ul></div><!-- end .queryquery --><?php
 	}else{
 		// if no post tell them
-		if ($disablenoposttext <= 0 ){ echo '<div class="queryquery-more">'.$noposttext.'</div><!--end .queryquery-more -->' ;}
+		if ($disablenoposttext <= 0 ){
+			 echo '<div class="queryquery-more">'.$noposttext.'</div><!--end .queryquery-more -->' ;}
 	}
 	  wp_reset_postdata();
 	  return ob_get_clean();
