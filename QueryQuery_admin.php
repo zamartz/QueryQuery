@@ -1,4 +1,9 @@
 <?php 
+/*-----------------------------------------------------------------------------------------------------//	
+
+	Query Query Admin Page(s) Content
+
+-------------------------------------------------------------------------------------------------------*/
 	// get QueryQuery Admin Options
 	include_once('QueryQuery_options.php');
 ?>
@@ -11,7 +16,13 @@
  </a>
  </h2>
 
-<?php if(isset($_GET["action"])){$tabaction=$_GET["action"];}else{$tabaction="default";}; 
+<?php 
+/*-----------------------------------------------------------------------------------------------------//	
+
+	//DEFAULT Tab
+
+-------------------------------------------------------------------------------------------------------*/
+if(isset($_GET["action"])){$tabaction=$_GET["action"];}else{$tabaction="default";}; 
 if ($tabaction =="default"){
 ?>
 
@@ -107,21 +118,27 @@ foreach ($option_list_names as $option_list_name){
 	}
 }
 ?></tbody><tfoot>
-<tr><td></td><td></td><td></td><td><input type="submit" name="Submit" value="Store Options" class="button button-primary"/></p>  
+	 <tr><td></td><td></td><td></td><td><input type="submit" name="Submit" value="Store Options" class="button button-primary"/></p>  
             <input type="hidden" name="action" value="update" />  
             <input type="hidden" name="page_options" value="<?php
 			foreach ($option_list_names as $option_list_name){
 			echo "QueryQuery_".$option_list_name["name"]; $i ++;
 			if ($i != count($option_list_names)){echo ",";} 
-			}
-			 ?>" /></td></tr>
+			}?>" />
+      </td></tr>
 </form>
 </tfoot>
 </table>
 </div>
 <?php } //end default content ?>
 
-<?php //EXAMPLE START
+
+<?php 
+/*-----------------------------------------------------------------------------------------------------//	
+
+	//EXAMPLE Tab
+
+-------------------------------------------------------------------------------------------------------*/
  include_once('QueryQuery_examples.php');
 ?>
 <div id="menu-tab-examples" <?php if($tabaction =="examples"){ echo 'style="display:inherit;" class"menu-tab-content-examples active"';}else { echo 'style="display:none;"; class"menu-tab-content"';} ?>>
