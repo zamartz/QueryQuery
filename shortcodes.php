@@ -18,7 +18,6 @@ ob_start();
 		array_push($opt_names,$standard); 
 	}
 
-
 //Custome deflaut list and if none set as null
 	$option_list_names = $opt_names;
 	
@@ -121,7 +120,7 @@ ob_start();
 	}else{$gobackwardm = ""; $gobackwardy = $theyear;}//end months after
 	if ($debugmode > 0){ echo ("<!--(".$monthsbefore."/m Backward) After= YEAR:".$gobackwardy." MONTH:".$gobackwardm."~ (".$monthsafter."/m Forward) Before=YEAR:". $goforwardy." MONTH:".$goforwardm."-->");};
 		
-		//Default Arguments to pass
+//Default Post Arguments to pass
 		$args = array(
 
 		'post_type' => 'post',
@@ -132,12 +131,7 @@ ob_start();
 		
 		);
 		
-		//Negotiat Categories
-		
-		
-		
-		
-		//$categorynumbers = array_merge($categorynumbers,$anticategorynumbers);
+//Negotiates Categories
 		count($anticategorynumbers) > 0 && is_array($anticategorynumbers) ? $anticategorynumbers = implode(",",$anticategorynumbers) : "";
 		count($categorynumbers) > 0 && is_array($categorynumbers) ? $categorynumbers = implode(",",$categorynumbers) : "";
 		// remove if null and if both combind with seperator
@@ -154,7 +148,7 @@ ob_start();
 		if ($debugmode > 0){ echo "<!-- QueryQueryDebug :Anti Cat Numbers = ".$anticategorynumbers."-->";};
 		if ($debugmode > 0){ echo "<!-- QueryQueryDebug : Final Cat Numbers = ".json_encode($finalcatlist)."-->";};
 		
-		
+//Default Sort Arguments to pass
 		$order !== "null" ? $args['order'] = $order : "";
 		$orderby !== "null" ? $args['orderby'] = $orderby : "";
 		$tag !== "null" ?$args['tag'] = $tag:  "";
@@ -197,7 +191,6 @@ ob_start();
 	};
 
 //Start to do the Query and Show Content
-
 	$recentEvents = new WP_Query($finalAtts);
 	$showonlyonpost > 0 && !is_single() ? $showqueryhere = 1 : $showqueryhere = 0 ; 
 	// if none query attribute override extract them here to overrite data
