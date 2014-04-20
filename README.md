@@ -1,6 +1,6 @@
 ## Synopsis
 
-Wordpress wp_query plugin - Ability to make WP Queries within Posts and Pages through shortcode. It can also be used to create "related" post content.
+Wordpress wp_query plugin - Ability to make WP_Query within Posts and Pages through shortcode. It can also be used to create "related" post content.
 
 Allows you to set how many months Forward and how many months Backward to index post in the query.
 
