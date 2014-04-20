@@ -1,6 +1,6 @@
 ## Synopsis
 
-Wordpress wp_query plugin - Ability to make WP Queries within Posts and Pages through shortcode
+Wordpress wp_query plugin - Ability to make WP Queries within Posts and Pages through shortcode. It can also be used to create "related" post content.
 
 ## Code Example
 
