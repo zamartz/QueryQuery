@@ -31,11 +31,11 @@ $example_list_names = array(
 			"desc" =>"This is the standard view with no image, no date shown, and no excerpt."
 			),
 			array(
-			"title" => "Disable Excerpts",
+			"title" => "Default Admin Tab",
 			"type" => "admin",
 			"example_text" =>"N/A",
 			"image_name" => "admin-default.png",
-			"desc" =>"All &#091;QueryQuery&#093; shortcodes have defaults set on install. Those defaults can be seen in the last column within the table under the &quot;Default&quot; tab. Each of these Default values can be overridden with corrisponding admin values. These defaults or override values function as &quot;Global&quot; when using &#091;QueryQuery&#093; shortcode. Any shortcode variables you place within a &#091;QueryQuery&#093; shortcode override admin values for that specific instance of the &#091;QueryQuery&#093; shortcode tag. Avalible shortcode values for &#091;QueryQuery&#093; shortcode are listed with the correct spelling on this same &quot;Default&quot; tab page. "
+			"desc" =>"<p>All &#091;QueryQuery&#093; shortcodes have defaults set on install.</p><p> Those defaults can be seen in the last column within the table under the &quot;Default&quot; tab.</p><p> Each of these Default values can be overridden with corrisponding admin values.</p><p> These defaults or override values function as &quot;Global&quot; when using &#091;QueryQuery&#093; shortcode.</p><p> Any shortcode variables you place within a &#091;QueryQuery&#093; shortcode override admin values for that specific instance of the &#091;QueryQuery&#093; shortcode tag.</p><p> Avalible shortcode values for &#091;QueryQuery&#093; shortcode are listed with the correct spelling on this same &quot;Default&quot; tab page. </p>"
 			)
 		);
 ?>
