@@ -2,6 +2,8 @@
 
 Wordpress wp_query plugin - Ability to make WP Queries within Posts and Pages through shortcode. It can also be used to create "related" post content.
 
+Allows you to set how many months Forward and how many months Backward to index post in the query.
+
 ## Code Example
 
 [QueryQuery postsperpage="4" poststatus"published"]
@@ -13,6 +15,8 @@ To provide more post content within a specific time frame and with access to wp_
 ## Installation
 
 (wordpress installation dir) -> wp-content -> plugins
+
+## [QueryQuery Wiki](https://github.com/zamartz/QueryQuery/wiki)
 
 ## License
 
